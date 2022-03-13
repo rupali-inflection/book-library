@@ -33,8 +33,6 @@ export default class Application {
         try {
             //Load configurations
             ConfigurationManager.loadConfigurations();
-           
-
             //Load the modules
             await Loader.init();
             if (process.env.NODE_ENV === 'test') {
@@ -91,7 +89,7 @@ export default class Application {
                 const server = this._app.listen(port, () => {
                     const serviceName = `api-${process.env.NODE_ENV}`;
                     Logger.instance().log(
-                        `${serviceName} is up and listening on port ${process.env.PORT.toString()} url: ${
+                        `${serviceName} is up and listening on port ${process.env.PORT} url: ${
                             ConfigurationManager._config.BaseUrl
                         }`
                     );
