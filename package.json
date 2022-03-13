@@ -5,6 +5,7 @@
     "main": "src/index.ts",
     "scripts": {
         "build": "tsc",
+        "rebuild": "rimraf dist && tsc",
         "start": "ts-node -r tsconfig-paths/register src/index.ts",
         "lint:fix": "eslint ./src/** --fix"
     },
