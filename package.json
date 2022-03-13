@@ -5,8 +5,7 @@
     "main": "src/index.ts",
     "scripts": {
         "build": "tsc",
-        "start": "tsc && ts-node --files ./src/index.ts",
-        "start:dev": "tsc && ts-node --files ./src/index.ts --watch",
+        "start": "ts-node -r tsconfig-paths/register src/index.ts",
         "lint:fix": "eslint ./src/** --fix"
     },
     "author": "akash jadhav",
@@ -22,6 +21,8 @@
         "eslint": "^8.10.0",
         "eslint-config-google": "^0.14.0",
         "prettier": "2.5.1",
+        "ts-node": "^10.7.0",
+        "tsconfig-paths": "^3.13.0",
         "typescript": "^4.6.2"
     },
     "dependencies": {
