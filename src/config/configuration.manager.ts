@@ -7,6 +7,10 @@ export class ConfigurationManager {
     public static DatabaseFlavour = (): DatabaseFlavour => {
         return ConfigurationManager._config.Database.Flavour;
     };
+    
+    public static DatabaseType = (): DatabaseType => {
+        return ConfigurationManager._config.Database.Type;
+    };
 
     public static loadConfigurations = (): void => {
         ConfigurationManager._config = {
