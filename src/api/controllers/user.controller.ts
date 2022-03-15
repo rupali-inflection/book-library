@@ -29,7 +29,14 @@ export class UserController {
         throw new Error('Method not implemented.');
     };
 
-    create = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
+    create = async (request: express.Request, response: express.Response) => {
+        const apiResponse = {
+            status: 200,
+            entity: {
+                name: 'Rupali dinde',
+                designation: 'software dev',
+            },
+        };
+        return response.status(apiResponse.status).send(apiResponse);
     };
 }
