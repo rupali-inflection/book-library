@@ -2,8 +2,9 @@ import { container, DependencyContainer } from 'tsyringe';
 import { Authenticator } from 'auth/authenticator';
 import { Logger } from '../common/logger';
 import { Authorizer } from 'auth/authorizer';
-import { DatabaseConnector } from 'database/sql/database.connector';
+
 import { Injector } from './injector';
+import { DatabaseConnector } from 'database/sql/database.connector';
 
 export class Loader {
     private static _container: DependencyContainer = container;
@@ -23,19 +24,20 @@ export class Loader {
     public static get authenticator() {
         return Loader._authenticator;
     }
-    private  static _databaseConnector: DatabaseConnector= null;
 
+    private static _databaseConnector: DatabaseConnector = null;
 
     public static get databaseConnector() {
-        return Loader.databaseConnector;
+        return Loader._databaseConnector;
     }
 
     public static init = async (): Promise<boolean> => {
         try {
-            Injector.registerInjections(container);
             //Register injections here...
-            Loader._databaseConnector= container.resolve(DatabaseConnector);
-           
+
+            Injector.registerInjections(container);
+
+            Loader._databaseConnector = container.resolve(DatabaseConnector);
 
             return true;
         } catch (error) {
