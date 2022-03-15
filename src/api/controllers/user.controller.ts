@@ -1,5 +1,7 @@
+import { UserValidator } from 'api/validators/user.validator';
 import { Authorizer } from 'auth/authorizer';
 import { ResponseHandler } from 'common/response.handler';
+import { UserDomainModel } from 'domain.types/user/user.domain.model';
 import express from 'express';
 import { UserService } from 'services/user.service';
 import { Loader } from 'startup/loader';
@@ -33,12 +35,9 @@ export class UserController {
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             // request.context = 'User.create';
-    
-            const apiResponse = {
-                name: 'rupali dinde',
-                designation: 'software dev',
-            };
-    
+            const domainData: UserDomainModel = await UserValidator.create(request, response);
+
+            const apiResponse = await this._service.create();
             ResponseHandler.success(
                 request,
                 response,
@@ -46,12 +45,13 @@ export class UserController {
                 200,
                 {
                     entity: apiResponse,
+                    domainData: domainData,
                 },
                 false
             );
         } catch (err) {
             ResponseHandler.handleError(request, response, err);
         }
-            
     };
+            
 }
