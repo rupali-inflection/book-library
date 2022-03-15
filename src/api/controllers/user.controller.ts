@@ -1,4 +1,5 @@
 import { Authorizer } from 'auth/authorizer';
+import { ResponseHandler } from 'common/response.handler';
 import express from 'express';
 import { UserService } from 'services/user.service';
 import { Loader } from 'startup/loader';
@@ -29,14 +30,25 @@ export class UserController {
         throw new Error('Method not implemented.');
     };
 
-    create = async (request: express.Request, response: express.Response) => {
+    create = async (request: express.Request, response: express.Response): Promise<void> => {
+        // request.context = 'User.create'; {
         const apiResponse = {
             status: 200,
-            entity: {
-                name: 'Rupali dinde',
-                designation: 'software dev',
-            },
+            
+            name: 'Rupali dinde',
+            designation: 'software dev',
+            
         };
-        return response.status(apiResponse.status).send(apiResponse);
+        ResponseHandler.success(
+            request,
+            response,
+            'User created!',
+            200,
+            {
+                entity: apiResponse,
+            },
+            false
+        );
     };
 }
+
