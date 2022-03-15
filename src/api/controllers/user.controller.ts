@@ -31,24 +31,27 @@ export class UserController {
     };
 
     create = async (request: express.Request, response: express.Response): Promise<void> => {
-        // request.context = 'User.create'; {
-        const apiResponse = {
-            status: 200,
+        try {
+            // request.context = 'User.create';
+    
+            const apiResponse = {
+                name: 'rupali dinde',
+                designation: 'software dev',
+            };
+    
+            ResponseHandler.success(
+                request,
+                response,
+                'User created!',
+                200,
+                {
+                    entity: apiResponse,
+                },
+                false
+            );
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
             
-            name: 'Rupali dinde',
-            designation: 'software dev',
-            
-        };
-        ResponseHandler.success(
-            request,
-            response,
-            'User created!',
-            200,
-            {
-                entity: apiResponse,
-            },
-            false
-        );
     };
 }
-
