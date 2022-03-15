@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 @injectable()
 export class UserService {
-    create = async () => {
+    create = async (userDetails: UserDomainModel) => {
         const servicceResponse = {
             name: 'rupali dinde',
             designation: 'software dev',
