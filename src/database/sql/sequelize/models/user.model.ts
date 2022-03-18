@@ -81,11 +81,11 @@ export default class User extends Model {
     })
     Password: string;
 
-    @IsUUID(4)
+    //@IsUUID(4)
     @ForeignKey(() => Role)
     @Column({
         type: DataType.UUID,
-        allowNull: false,
+        allowNull: true,
     })
     RoleId: string;
 
