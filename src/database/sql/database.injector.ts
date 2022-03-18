@@ -2,7 +2,6 @@ import { ConfigurationManager } from 'config/configuration.manager';
 import { DependencyContainer } from 'tsyringe';
 import { SQLInjector } from './sql.injector';
 
-
 export class DatabaseInjector {
     static registerInjections(container: DependencyContainer) {
         //
