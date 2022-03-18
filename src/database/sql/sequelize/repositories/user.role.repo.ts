@@ -5,9 +5,20 @@ import { RoleDto } from 'domain.types/role/role.dto';
 import { Roles } from 'domain.types/role/role.types';
 import { RoleMapper } from '../mapper/user.role.mapper';
 import Role from '../models/role.model';
-import { Op } from 'sequelize/types';
+
 
 export class UserRoleRepo implements IRoleRepo {
+    search = async (): Promise<RoleDto[]> => {
+        try {
+            const role: Role[] = await Role.findAll();
+            const dto: RoleDto[] = role.map((userRole) => RoleMapper.toDto(userRole));
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+
     create = async (roleEntity: any): Promise<RoleDto> => {
         try {
             const entity = {

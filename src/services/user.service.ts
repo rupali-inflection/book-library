@@ -6,7 +6,6 @@ import { UserDomainModel } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
 import { inject, injectable } from 'tsyringe';
 
-
 @injectable()
 export class UserService {
 

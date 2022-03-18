@@ -1,5 +1,6 @@
 import { Logger } from 'common/logger';
 import { IRoleRepo } from 'database/repository.interfaces/user.role.repo.interface';
+import { RoleDto } from 'domain.types/role/role.dto';
 import { Roles } from 'domain.types/role/role.types';
 import { inject, injectable } from 'tsyringe';
 
@@ -16,10 +17,10 @@ export class Seeder {
     };
 
     seedDefaultRoles = async () => {
-        await this._roleRepo.create({
-            RoleName: Roles.Admin,
-        });
-
+        const existing: RoleDto[] = await this._roleRepo.search();
+        if (existing.length > 0) {
+            return;
+        }
         await this._roleRepo.create({
             RoleName: Roles.User,
         });
