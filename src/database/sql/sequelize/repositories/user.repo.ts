@@ -14,7 +14,7 @@ export class UserRepo implements IUserRepo {
             LastName: userDetails.LastName,
             Email: userDetails.Email,
             Password: userDetails.Password,
-            RoleId: '',
+            RoleId: userDetails.RoleId,
         };
 
         const user: User = await User.create(entity);

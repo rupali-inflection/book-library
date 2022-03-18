@@ -10,6 +10,7 @@ export class UserMapper {
             MiddleName: entity.MiddleName,
             LastName: entity.LastName,
             Email: entity.Email,
+            RoleId:entity.RoleId,
             CreatedAt: entity.createdAt,
             UpdatedAt: entity.updatedAt,
             DeletedAt: entity.deletedAt,

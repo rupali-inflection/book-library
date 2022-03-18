@@ -27,6 +27,7 @@ export class UserValidator {
                 LastName: request.body.LastName,
                 Email: request.body.Email,
                 Password: request.body.Password,
+                RoleId: request.body.RoleId ?? null,
             };
 
             return createUserDomainModel;
