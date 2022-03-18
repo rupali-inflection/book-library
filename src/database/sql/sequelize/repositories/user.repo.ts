@@ -6,6 +6,20 @@ import { UserMapper } from '../mapper/user.mapper';
 import User from '../models/user.model';
 
 export class UserRepo implements IUserRepo {
+    async findUsersByRoleId(roleid: string): Promise<UserDetailsDto[]> {
+        const users: User[] = await User.findAll({
+            where: {
+                RoleId: roleid,
+            },
+        });
+
+        const temp: Promise<UserDetailsDto>[] = users.map(async (user) => await UserMapper.toDetailsDto(user));
+
+        const userDetailsDto: UserDetailsDto[] = await Promise.all(temp);
+
+        return userDetailsDto;
+    }
+
     async createUser(userDetails: UserDomainModel): Promise<UserDetailsDto> {
         const entity = {
             Prefix: userDetails.Prefix,
