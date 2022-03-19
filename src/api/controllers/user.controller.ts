@@ -1,7 +1,7 @@
 import { UserValidator } from 'api/validators/user.validator';
 import { Authorizer } from 'auth/authorizer';
 import { ResponseHandler } from 'common/response.handler';
-import { UserDomainModel } from 'domain.types/user/user.domain.model';
+import { UserDomainModel, UserLoginDetails } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
 import express from 'express';
 import { UserService } from 'services/user.service';
@@ -47,6 +47,36 @@ export class UserController {
                 {
                     entity: userdetails,
                     
+                },
+                false
+            );
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+    
+    loginWithPassword = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            // request.context = 'User.create';
+
+            const domainData: UserLoginDetails = await UserValidator.loginWithPassword(request, response);
+
+            const userdetails = await this._service.loginWithPassword(domainData);
+
+            const message = `User '${userdetails.user.FirstName}' logged in successfully!`;
+
+            const data = {
+                AccessToken: userdetails.accessToken,
+                User: userdetails.user,
+            };
+
+            ResponseHandler.success(
+                request,
+                response,
+                message,
+                200,
+                {
+                    entity: data,
                 },
                 false
             );

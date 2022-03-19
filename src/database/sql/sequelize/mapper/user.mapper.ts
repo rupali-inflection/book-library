@@ -3,6 +3,9 @@ import User from '../models/user.model';
 
 export class UserMapper {
     static toDetailsDto = async (entity: User): Promise<UserDetailsDto> => {
+        if (entity === null) {
+            return null;
+        }
         const dto: UserDetailsDto = {
             id: entity.id,
             FirstName: entity.FirstName,
