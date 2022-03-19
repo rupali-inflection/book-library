@@ -1,8 +1,8 @@
 /* eslint-disable indent */
-// import { Helper } from 'common/helper';
+import { Helper } from 'common/helper';
 import {
-    // BeforeCreate,
-    // BeforeUpdate,
+    BeforeCreate,
+    BeforeUpdate,
     BelongsTo,
     Column,
     CreatedAt,
@@ -84,13 +84,13 @@ export default class User extends Model {
     })
     Password: string;
 
-    // @BeforeCreate
-    // @BeforeUpdate
-    // static encryptPassword(client) {
-    //     client.Password = Helper.hash(client.Password);
-    // }
+    @BeforeCreate
+    @BeforeUpdate
+    static encryptPassword(client) {
+        client.Password = Helper.hash(client.Password);
+    }
 
-    // //@IsUUID(4)
+    //@IsUUID(4)
     @ForeignKey(() => Role)
     @Column({
         type: DataType.UUID,
