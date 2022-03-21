@@ -97,9 +97,16 @@ export class DatabaseConnector_Sequelize implements IDatabaseConnector {
         this._createDatabase = value;
     }
     
-    dropDatabase(): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
+    dropDatabase = async (): Promise<boolean> => {
+        try {
+            const client = this.getClient();
+            await client.dropDb();
+            return true;
+        } catch (error) {
+            Logger.instance().log(error.message);
+        }
+        return false;
+    };
 
     executeQuery(query:string): Promise<boolean> {
         throw new Error("Method not implemented.");

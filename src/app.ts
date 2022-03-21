@@ -43,6 +43,9 @@ export default class Application {
             //Connect with database
             await Loader.databaseConnector.init();
 
+            //call the seeder
+            await Loader.seeder.init();
+
             //Set-up middlewares
             await this.setupMiddlewares();
 
@@ -59,7 +62,7 @@ export default class Application {
             Logger.instance().log(`An error occurred while starting api service. ${error.message}`);
         }
     };
-
+  
     private setupMiddlewares = async (): Promise<boolean> => {
         return new Promise((resolve, reject) => {
             try {

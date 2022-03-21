@@ -1,5 +1,6 @@
 import express from 'express';
 import { Logger } from '../../common/logger';
+import { register } from './user.routes';
 
 export class Router {
     private _app = null;
@@ -18,6 +19,7 @@ export class Router {
                     });
                 });
                 resolve(true);
+                register(this._app);
             } catch (error) {
                 Logger.instance().log('Error initializing the router: ' + error.message);
                 reject(false);
