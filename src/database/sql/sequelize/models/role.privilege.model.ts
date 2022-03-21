@@ -9,7 +9,7 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    IsInt,
+ 
     ForeignKey,
 } from 'sequelize-typescript';
 
@@ -43,13 +43,12 @@ export default class RolePrivilege extends Model {
     })
     Privilege: string;
 
-    @IsInt
     @ForeignKey(() => Role)
     @Column({
-        type: DataType.INTEGER,
+        type: DataType.STRING,
         allowNull: false,
     })
-    RoleId: number;
+    RoleId: string;
 
     @Column
     @CreatedAt

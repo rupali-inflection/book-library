@@ -5,6 +5,7 @@ import express from 'express';
 import { body, oneOf, param, query, validationResult } from 'express-validator';
 import { ResponseHandler } from "common/response.handler";
 
+
 export class UserValidator {
     static get = async (request: express.Request, response: express.Response): Promise<string> => {
         try {

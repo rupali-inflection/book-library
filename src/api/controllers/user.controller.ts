@@ -6,8 +6,9 @@ import { UserDetailsDto } from 'domain.types/user/user.dto';
 import express from 'express';
 import { UserService } from 'services/user.service';
 import { Loader } from 'startup/loader';
+import { BaseController } from './base.controller';
 
-export class UserController {
+export class UserController extends BaseController {
     //#region member variables and constructors
 
     _service: UserService = null;
@@ -15,6 +16,7 @@ export class UserController {
     _authorizer: Authorizer = null;
 
     constructor() {
+        super();
         this._service = Loader.container.resolve(UserService);
         this._authorizer = Loader.authorizer;
     }
@@ -27,7 +29,7 @@ export class UserController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            // request.context = 'User.create';
+            await this.setContext('User.getById', request, response);
 
             const userId: string = await UserValidator.get(request, response);
 
@@ -54,7 +56,7 @@ export class UserController {
 
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            // request.context = 'User.create';
+            this.setContext('User.create', request, response);
             const domainData: UserDomainModel = await UserValidator.create(request, response);
 
             const userdetails: UserDetailsDto = await this._service.create(domainData);
