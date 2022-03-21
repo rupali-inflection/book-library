@@ -26,7 +26,26 @@ export class UserController {
     };
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
+        try {
+            // request.context = 'User.create';
+
+            const userId: string = await UserValidator.get(request, response);
+
+            const userdetails: UserDetailsDto = await this._service.getById(userId);
+
+            ResponseHandler.success(
+                request,
+                response,
+                'User get by id!',
+                200,
+                {
+                    entity: userdetails,
+                },
+                false
+            );
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
     };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {

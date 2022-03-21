@@ -6,6 +6,21 @@ import { body, oneOf, param, query, validationResult } from 'express-validator';
 import { ResponseHandler } from "common/response.handler";
 
 export class UserValidator {
+    static get = async (request: express.Request, response: express.Response): Promise<string> => {
+        try {
+            await param('id').trim().escape().isUUID().run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+
+            return request.params.id;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+    
     static loginWithPassword = async (
         request: express.Request,
         response: express.Response
