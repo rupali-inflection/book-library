@@ -2,7 +2,7 @@
 import { IUserRepo,UserFindOptions } from 'database/repository.interfaces/user.repo.interface';
 import { UserDomainModel } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
-import { Op } from 'sequelize/types';
+import { Op } from 'sequelize';
 import { UserMapper } from '../mapper/user.mapper';
 import User from '../models/user.model';
 
