@@ -5,7 +5,7 @@ export interface BookDetailsDto {
 
     Summary: string;
 
-   PublishedOn: Date;
+   PublishedAt: Date;
 
    CreatedAt: Date;
 

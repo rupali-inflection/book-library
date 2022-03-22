@@ -5,7 +5,7 @@ export interface BookDomainModel {
 
     Summary: string;
 
-   PublishedOn: Date;
+   PublishedAt: Date;
    
    AuthorId:string;
 

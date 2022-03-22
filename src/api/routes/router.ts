@@ -1,7 +1,8 @@
 import express from 'express';
 import { Logger } from '../../common/logger';
-import { register as registerAuthRoutes } from './auth.routes';
-import { register as registerUserRoutes } from './auth.routes';
+import {  register as registerAuthRoutes } from './auth.routes';
+import { register as registerUserRoutes } from './user.routes';
+import { register as registerBookRoutes } from './book.routes';
 
 
 export class Router {
@@ -22,6 +23,8 @@ export class Router {
                 });
                 registerUserRoutes(this._app);
                 registerAuthRoutes(this._app);
+                registerBookRoutes(this._app);
+
                 resolve(true);
             } catch (error) {
                 Logger.instance().log('Error initializing the router: ' + error.message);

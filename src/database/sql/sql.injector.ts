@@ -1,6 +1,7 @@
 
 import { DependencyContainer } from 'tsyringe';
 import { DatabaseConnector_Sequelize } from './sequelize/database.connector.sequelize';
+import { BookRepo } from './sequelize/repositories/book.repo';
 import { RolePrivilegeRepo } from './sequelize/repositories/role privilege.repo';
 import { UserRepo } from './sequelize/repositories/user.repo';
 import { UserRoleRepo } from './sequelize/repositories/user.role.repo';
@@ -11,5 +12,6 @@ export class SQLInjector {
         container.register('IUserRepo', UserRepo);
         container.register('IRoleRepo', UserRoleRepo);
         container.register('IRolePrivilegeRepo', RolePrivilegeRepo);
+        container.register('IBookRepo', BookRepo);
     }
 }
