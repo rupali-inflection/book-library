@@ -1,5 +1,5 @@
 export interface BookDomainModel {
-    Id: string;
+    id: string;
 
     Name: string;
 

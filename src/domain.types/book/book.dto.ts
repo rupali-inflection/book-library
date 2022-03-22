@@ -1,5 +1,5 @@
 export interface BookDetailsDto {
-    Id: string;
+    id: string;
     
     Name: string;
 
