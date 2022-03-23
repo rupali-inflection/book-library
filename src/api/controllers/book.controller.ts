@@ -27,28 +27,28 @@ export class BookController extends BaseController {
         throw new Error('Method not implemented.');
     };
 
-    // getById = async (request: express.Request, response: express.Response): Promise<void> => {
-    //     try {
-    //         await this.setContext('Book.getById', request, response);
+    getById = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('Book.getById', request, response);
 
-    //         const userId: string = await BookValidator.get(request, response);
+            const bookId: string = await BookValidator.get(request, response);
 
-    //         const userdetails: UserDetailsDto = await this._service.getById(userId);
+            const bookdetails: BookDetailsDto = await this._service.getById(bookId);
 
-    //         ResponseHandler.success(
-    //             request,
-    //             response,
-    //             'User get by id!',
-    //             200,
-    //             {
-    //                 entity: userdetails,
-    //             },
-    //             false
-    //         );
-    //     } catch (err) {
-    //         ResponseHandler.handleError(request, response, err);
-    //     }
-    // };
+            ResponseHandler.success(
+                request,
+                response,
+                'Book get by id!',
+                200,
+                {
+                    entity: bookdetails,
+                },
+                false
+            );
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
         throw new Error('Method not implemented.');

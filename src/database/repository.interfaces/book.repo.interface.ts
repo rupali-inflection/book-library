@@ -3,7 +3,7 @@ import { BookDetailsDto } from "domain.types/book/book.dto";
 
 
 export interface IBookRepo {
-    // getById(userId: string): Promise<UserDetailsDto>;
+    getById(bookId: string): Promise<BookDetailsDto>;
     // getUserHashedPassword(id: string): Promise<string>;
     // findOneUser(options: UserFindOptions): Promise<UserDetailsDto>;
     // findUsersByRoleId(id: string): UserDetailsDto[] | PromiseLike<UserDetailsDto[]>;

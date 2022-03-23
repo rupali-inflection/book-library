@@ -8,7 +8,12 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 export class BookService {
     constructor(@inject('IBookRepo') private _bookRepo: IBookRepo) {}
+    
+    getById = async (bookId: string): Promise<BookDetailsDto> => {
+        const bookDetailsDto: BookDetailsDto = await this._bookRepo.getById(bookId);
 
+        return bookDetailsDto;
+    };
 
     create = async (bookDetails: BookDomainModel): Promise<BookDetailsDto> => {
         //  const userRole: RoleDto = await this._roleRepo.getByName(Roles.User);

@@ -5,7 +5,21 @@ import express from 'express';
 import { body,param, validationResult } from "express-validator";
 
 export class BookValidator {
+    static get = async (request: express.Request, response: express.Response): Promise<string> => {
+        try {
+            await param('id').trim().escape().isUUID().run(request);
 
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+
+            return request.params.id;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+    
     static create = async (request: express.Request, response: express.Response): Promise<BookDomainModel> => {
         try {
             await body('id').trim().run(request);

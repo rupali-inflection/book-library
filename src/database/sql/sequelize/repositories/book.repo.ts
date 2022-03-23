@@ -12,11 +12,21 @@ import Book from '../models/book.model';
 
 
 export class BookRepo implements IBookRepo {
-    
+    getById = async (bookId: string): Promise<BookDetailsDto> => {
+        const book: Book = await Book.findOne({
+            where: {
+                id: bookId,
+            },
+        });
+
+        const details: BookDetailsDto = await BookMapper.toDetailsDto(book);
+
+        return details;
+    };
 
     async createBook(bookDetails: BookDomainModel):Promise<BookDetailsDto>    {
         const entity = {
-            id:bookDetails.id ?? null,
+            id:bookDetails.id ,
             Name: bookDetails. Name,
             Summary: bookDetails.Summary,
             PublishedAt:bookDetails.PublishedAt,
