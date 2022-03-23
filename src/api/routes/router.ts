@@ -3,6 +3,7 @@ import { Logger } from '../../common/logger';
 import {  register as registerAuthRoutes } from './auth.routes';
 import { register as registerUserRoutes } from './user.routes';
 import { register as registerBookRoutes } from './book.routes';
+import { register as registerBookCopyRoutes } from './book.copy.routes';
 
 
 export class Router {
@@ -24,6 +25,7 @@ export class Router {
                 registerUserRoutes(this._app);
                 registerAuthRoutes(this._app);
                 registerBookRoutes(this._app);
+                registerBookCopyRoutes(this._app);
 
                 resolve(true);
             } catch (error) {
@@ -33,4 +35,5 @@ export class Router {
         });
     };
 }
+
 
