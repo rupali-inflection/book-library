@@ -26,7 +26,7 @@ export class BookValidator {
             await body('Name').isString().notEmpty().trim().run(request);
             await body('Summary').optional().trim().run(request);
             await body('PublishedAt').notEmpty().trim().run(request);
-            await body('AuthorId').isString().notEmpty().trim().run(request);
+            await body('AuthorId').isUUID().notEmpty().trim().run(request);
 
             const result = validationResult(request);
             if (!result.isEmpty()) {
@@ -37,8 +37,8 @@ export class BookValidator {
                 id: request.body.id,
                 Name:  request.body. Name,
                 Summary:  request.body.Summary,
-                PublishedAt:  request.body.Published,
-                AuthorId: request.body.AuthorId
+                PublishedAt:  request.body.Published ?? null,
+                AuthorId: request.body.AuthorId ,
             };
 
             return createBookDomainModel;

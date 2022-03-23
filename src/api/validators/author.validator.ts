@@ -24,8 +24,8 @@ export class AuthorValidator {
     static create = async (request: express.Request, response: express.Response): Promise<AuthorDomainModel> => {
         try {
             await body('id').trim().run(request);
-            await body('BookId').isString().notEmpty().trim().run(request);
- 
+            await body('FirstName').isString().notEmpty().trim().run(request);
+            await body('LastName').isString().notEmpty().trim().run(request);
             const result = validationResult(request);
             if (!result.isEmpty()) {
                 Helper.handleValidationError(result);
