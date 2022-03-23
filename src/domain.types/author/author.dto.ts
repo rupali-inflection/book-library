@@ -1,4 +1,4 @@
-export interface AuthorDomainModel {
+export interface AuthorDetailsDto  {
     id:string;
 
     FirstName: string;

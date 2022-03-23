@@ -4,7 +4,7 @@ import {  register as registerAuthRoutes } from './auth.routes';
 import { register as registerUserRoutes } from './user.routes';
 import { register as registerBookRoutes } from './book.routes';
 import { register as registerBookCopyRoutes } from './book.copy.routes';
-
+import { register as registerAuthorRoutes } from './author.routes';
 
 export class Router {
     private _app = null;
@@ -26,6 +26,7 @@ export class Router {
                 registerAuthRoutes(this._app);
                 registerBookRoutes(this._app);
                 registerBookCopyRoutes(this._app);
+                registerAuthorRoutes(this._app);
 
                 resolve(true);
             } catch (error) {
