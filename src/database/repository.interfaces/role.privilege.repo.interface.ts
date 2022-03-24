@@ -2,6 +2,7 @@ import { RolePrivilegeDto } from '../../domain.types/role/role.privilege.dto';
 
 export interface IRolePrivilegeRepo {
     create(entity: any): Promise<RolePrivilegeDto>;
+    getByRoleAndPrivilage(roleid: string, privilege:string): Promise<RolePrivilegeDto>;
 
     getById(id: string): Promise<RolePrivilegeDto>;
 

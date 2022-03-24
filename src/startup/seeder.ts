@@ -28,10 +28,10 @@ export class Seeder {
     };
 
     private seedRolePrivileges = async () => {
-        const rolePrivileges = await this._rolePrivilegeRepo.search();
-        if (rolePrivileges.length > 0) {
-            return;
-        }
+        // const rolePrivileges = await this._rolePrivilegeRepo.search();
+        // if (rolePrivileges.length > 0) {
+        //     return;
+        // }
         try {
             const arr = RolePrivilegesList['default'];
             for (let i = 0; i < arr.length; i++) {
@@ -44,6 +44,12 @@ export class Seeder {
                     continue;
                 }
                 for (const p of privileges) {
+                    const data = await this._rolePrivilegeRepo.getByRoleAndPrivilage(role.id, p);
+
+                    if (data !== null){
+                        continue;
+                    }
+
                     await this._rolePrivilegeRepo.create({
                         RoleId: role.id,
                         Privilege: p,

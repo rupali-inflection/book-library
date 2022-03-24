@@ -56,7 +56,7 @@ export class AuthorController extends BaseController {
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('Author.create', request, response);
+            await this.setContext('Author.create', request, response);
             const domainData: AuthorDomainModel = await AuthorValidator.create(request, response);
 
             const authordetails: AuthorDetailsDto = await this._service.create(domainData);

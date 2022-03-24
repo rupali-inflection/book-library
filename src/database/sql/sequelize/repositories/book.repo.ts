@@ -26,7 +26,6 @@ export class BookRepo implements IBookRepo {
 
     async createBook(bookDetails: BookDomainModel):Promise<BookDetailsDto>    {
         const entity = {
-            id:bookDetails.id ,
             Name: bookDetails. Name,
             Summary: bookDetails.Summary,
             PublishedAt:bookDetails.PublishedAt,

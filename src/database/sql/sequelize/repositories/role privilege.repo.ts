@@ -6,6 +6,33 @@ import { Op } from 'sequelize';
 import RolePrivilege from '../models/role.privilege.model';
 
 export class RolePrivilegeRepo implements IRolePrivilegeRepo {
+
+    getByRoleAndPrivilage = async (roleid: string, privilege: string): Promise<RolePrivilegeDto> => {
+        try {
+            
+            const rolePrivilege = await RolePrivilege.findOne({
+                where:{  
+                    RoleId: roleid,
+                    Privilege: privilege,
+                }
+            });
+
+            if (rolePrivilege === null){
+                return null;
+            }
+
+            const dto: RolePrivilegeDto = {
+                id: rolePrivilege.id,
+                RoleId: rolePrivilege.RoleId,
+                Privilege: rolePrivilege.Privilege,
+            };
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+
     create = async (object: any): Promise<RolePrivilegeDto> => {
         try {
             const entity = {
