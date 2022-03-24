@@ -21,7 +21,7 @@ export class AuthorRepo implements IAuthorRepo {
 
     async createAuthor(authorDetails: AuthorDomainModel):Promise<AuthorDetailsDto>    {
         const entity = {
-            id:authorDetails.id ,
+           
             FirstName: authorDetails.FirstName,
             LasttName: authorDetails.LastName,
         };
