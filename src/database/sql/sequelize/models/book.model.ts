@@ -52,7 +52,7 @@ export default class Book extends Model {
 
     @Column({
         type: DataType.DATE,
-        allowNull: false,
+        allowNull: true,
     })
     PublishedAt: Date;
 
