@@ -33,7 +33,7 @@ export class UserRoleRepo implements IRoleRepo {
         }
     };
 
-    getById(id: number): Promise<RoleDto> {
+    getById(id:string): Promise<RoleDto> {
         throw new Error('Method not implemented.');
     }
 
