@@ -5,6 +5,13 @@
     },
     {
         "Role": "Admin",
-        "Privileges": ["User.getById", "User.create", "Author.create"]
+        "Privileges": ["User.getById", 
+            "User.create",
+             "Author.create",
+             "Author.getById",
+             "Book.getById",
+             "Book.create"
+
+            ]
     }
 ]
