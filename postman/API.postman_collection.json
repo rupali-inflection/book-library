@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "a072128d-d93d-4fb1-b987-49dcc067a140",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Api version",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login with email and password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"AccessToken\");\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"Access_Token\", jsonData.Data.entity.AccessToken );"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer{{Access_Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer{{Access_Token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\":\"Kiran.kharade@yopmail.com\",\r\n    \"Password\":\"Mauli@1707\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user get by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer{{Access_Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/686dfd54-c651-4ce4-ad2d-2dc79a7f694d",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"686dfd54-c651-4ce4-ad2d-2dc79a7f694d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create  user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Prefix\": \"Mr\",\r\n    \"FirstName\": \"Ekanth\",\r\n     \"MiddleName\": \"\",\r\n      \"LastName\": \"Kharat\",\r\n      \"Email\": \"kharat.ek@gmail.com\",\r\n      \"Password\": \"Mauli@1707\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODZkZmQ1NC1jNjUxLTRjZTQtYWQyZC0yZGM3OWE3ZjY5NGQiLCJEaXNwbGF5TmFtZSI6IktpcmFuIEtoYXJhZGUiLCJFbWFpbCI6IktpcmFuLmtoYXJhZGVAeW9wbWFpbC5jb20iLCJDdXJyZW50Um9sZUlkIjoiZTg3MjVhZmMtODgzMS00ZWM4LWExYzctOTIxZTk2OTM2NDhmIiwiaWF0IjoxNjQ4MDA5NDU0LCJleHAiOjE2NTU3ODU0NTR9.MKagGg8t4jXHp4-egMEUPZ-jLO8Jshv-zUQZ-R8WoH0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Access_Token",
+			"value": ""
+		}
+	]
+}
