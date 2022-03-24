@@ -4,8 +4,6 @@ import { BookCopyDetailsDto } from "domain.types/book.copy/book.copy.dto";
 import { BookCopyMapper } from "../mapper/book.copy.mapper";
 import BookCopy from "../models/book.copy.model";
 
-
-
 export class BookCopyRepo implements IBookCopyRepo {
    
     getById = async (bookCopyId: string): Promise<BookCopyDetailsDto> => {
@@ -23,7 +21,6 @@ export class BookCopyRepo implements IBookCopyRepo {
     async createBookCopy(bookCopyDetails: BookCopyDomainModel):Promise<BookCopyDetailsDto>    {
 
         const entity = {
-            id:bookCopyDetails.id,
             BookId:bookCopyDetails.BookId,
         };
     
