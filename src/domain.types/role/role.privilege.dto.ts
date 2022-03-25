@@ -1,6 +1,6 @@
 
 export interface RolePrivilegeDto {
     id       : string,
-    RoleId   : number;
-    Privilege: string;
+    RoleId   : string;
+     Privilege: string;
 }

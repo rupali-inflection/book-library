@@ -15,8 +15,8 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'Person',
-    tableName: 'persons',
+    modelName: 'Author',
+    tableName: 'authors',
     paranoid: true,
     freezeTableName: true,
 })

@@ -1,11 +1,51 @@
 /* eslint-disable newline-per-chained-call */
 import { Helper } from 'common/helper';
-import { UserDomainModel } from 'domain.types/user/user.domain.model';
+import { UserDomainModel, UserLoginDetails } from 'domain.types/user/user.domain.model';
 import express from 'express';
 import { body, oneOf, param, query, validationResult } from 'express-validator';
 import { ResponseHandler } from "common/response.handler";
 
+
 export class UserValidator {
+    static get = async (request: express.Request, response: express.Response): Promise<string> => {
+        try {
+            await param('id').trim().escape().isUUID().run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+
+            return request.params.id;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+    
+    static loginWithPassword = async (
+        request: express.Request,
+        response: express.Response
+    ): Promise<UserLoginDetails> => {
+        try {
+            await body('Email').isString().notEmpty().trim().run(request);
+            await body('Password').isString().notEmpty().trim().run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+
+            const domainModel: UserLoginDetails = {
+                Email: request.body.Email,
+                Password: request.body.Password,
+            };
+
+            return domainModel;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+    
     static create = async (request: express.Request, response: express.Response): Promise<UserDomainModel> => {
         try {
             await body('Prefix').optional().trim().run(request);
@@ -31,6 +71,21 @@ export class UserValidator {
             };
 
             return createUserDomainModel;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+  
+    static delete = async (request: express.Request, response: express.Response): Promise<string> => {
+        try {
+            await param('id').trim().escape().isUUID().run(request);
+    
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+    
+            return request.params.id;
         } catch (err) {
             ResponseHandler.handleError(request, response, err);
         }

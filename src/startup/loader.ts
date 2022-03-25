@@ -43,9 +43,11 @@ export class Loader {
             //Register injections here...
 
             Injector.registerInjections(container);
-
             Loader._databaseConnector = container.resolve(DatabaseConnector);
             Loader._seeder = container.resolve(Seeder);
+            Loader._authenticator = container.resolve(Authenticator);
+            Loader._authorizer = container.resolve(Authorizer);
+            
 
             return true;
         } catch (error) {

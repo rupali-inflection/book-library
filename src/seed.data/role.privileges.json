@@ -1,0 +1,22 @@
+[
+    {
+        "Role": "User",
+        "Privileges": ["User.GetById"]
+    },
+    {
+        "Role": "Admin",
+        "Privileges": ["User.GetById", 
+            "User.Create",
+            "User.Delete",
+             "Author.Create",
+             "Author.GetById",
+             "Author.Delete",
+             "Book.GetById",
+             "Book.Create",
+             "Book.Delete",
+             "BookCopy.Create",
+             "BookCopy.GetById",
+             "BookCopy.Delete"
+            ]
+    }
+]

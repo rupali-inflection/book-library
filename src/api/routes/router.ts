@@ -1,6 +1,10 @@
 import express from 'express';
 import { Logger } from '../../common/logger';
-import { register } from './user.routes';
+import {  register as registerAuthRoutes } from './auth.routes';
+import { register as registerUserRoutes } from './user.routes';
+import { register as registerBookRoutes } from './book.routes';
+import { register as registerBookCopyRoutes } from './book.copy.routes';
+import { register as registerAuthorRoutes } from './author.routes';
 
 export class Router {
     private _app = null;
@@ -18,8 +22,13 @@ export class Router {
                         message : `API [Version ${process.env.API_VERSION}]`,
                     });
                 });
+                registerUserRoutes(this._app);
+                registerAuthRoutes(this._app);
+                registerBookRoutes(this._app);
+                registerBookCopyRoutes(this._app);
+                registerAuthorRoutes(this._app);
+
                 resolve(true);
-                register(this._app);
             } catch (error) {
                 Logger.instance().log('Error initializing the router: ' + error.message);
                 reject(false);
@@ -27,3 +36,5 @@ export class Router {
         });
     };
 }
+
+

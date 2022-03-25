@@ -2,14 +2,15 @@ import { RolePrivilegeDto } from '../../domain.types/role/role.privilege.dto';
 
 export interface IRolePrivilegeRepo {
     create(entity: any): Promise<RolePrivilegeDto>;
+    getByRoleAndPrivilage(roleid: string, privilege:string): Promise<RolePrivilegeDto>;
 
     getById(id: string): Promise<RolePrivilegeDto>;
 
     search(): Promise<RolePrivilegeDto[]>;
 
-    getPrivilegesForRole(roleId: number): Promise<RolePrivilegeDto[]>;
+    getPrivilegesForRole(roleId: string): Promise<RolePrivilegeDto[]>;
 
-    hasPrivilegeForRole(roleId: number, privilege: string): Promise<boolean>;
+    hasPrivilegeForRole(roleId: string, privilege: string): Promise<boolean>;
 
     delete(id: string): Promise<boolean>;
 }
