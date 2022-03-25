@@ -22,4 +22,8 @@ export class BookCopyService {
 
         return bookCopyDetailsDto;
     };
+
+    delete = async (bookCopyId: string): Promise<boolean> => {
+        return await this._bookCopyRepo.delete(bookCopyId);
+    };
 }

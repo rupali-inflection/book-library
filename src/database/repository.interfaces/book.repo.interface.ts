@@ -5,6 +5,6 @@ export interface IBookRepo {
 
     createBook(bookDetails: BookDomainModel): Promise<BookDetailsDto>;
      
-    delete(userId: string): Promise<boolean>;
+    delete(bookId: string): Promise<boolean>;
 
 }

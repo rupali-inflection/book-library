@@ -10,11 +10,13 @@
             "User.Delete",
              "Author.Create",
              "Author.GetById",
+             "Author.Delete",
              "Book.GetById",
              "Book.Create",
+             "Book.Delete",
              "BookCopy.Create",
-             "BookCopy.GetById"
-
+             "BookCopy.GetById",
+             "BookCopy.Delete"
             ]
     }
 ]

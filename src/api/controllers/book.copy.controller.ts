@@ -7,6 +7,7 @@ import { BookCopyDetailsDto } from "domain.types/book.copy/book.copy.dto";
 import { BookCopyDomainModel } from "domain.types/book.copy/book.copy.domain.model";
 import { BookCopyService } from "services/book.copy.service";
 import { BookCopyValidator } from "api/validators/book.copy.validator";
+import { ApiError } from "common/api.error";
 
 export class BookCopyController extends BaseController {
     //#region member variables and constructors
@@ -69,10 +70,27 @@ export class BookCopyController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
-   
-
+    
     delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
+        try {
+            await this.setContext('BookCopy.Delete', request, response);
+     
+            const bookCopyId: string = await BookCopyValidator.delete(request, response);
+     
+            const deleted = await this._service.delete(bookCopyId);
+            if (!deleted) {
+                throw new ApiError(400, 'BookCopy cannot be deleted.');
+            }
+     
+            ResponseHandler.success(
+                request,
+                response,
+                'BookCopy deleted successfully!', 200, {
+                    Deleted : true,
+                });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
     };
 
 }

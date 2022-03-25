@@ -1,3 +1,5 @@
+import { ApiError } from "common/api.error";
+import { Logger } from "common/logger";
 import { IBookCopyRepo } from "database/repository.interfaces/book.copy.repo.interface";
 import { BookCopyDomainModel } from "domain.types/book.copy/book.copy.domain.model";
 import { BookCopyDetailsDto } from "domain.types/book.copy/book.copy.dto";
@@ -27,5 +29,15 @@ export class BookCopyRepo implements IBookCopyRepo {
         const bookCopy: BookCopy= await BookCopy.create(entity);
         const dto: BookCopyDetailsDto = await BookCopyMapper.toDetailsDto(bookCopy);
         return dto;
+    }
+
+    async delete(bookCopyId: string): Promise<boolean>  {
+        try {
+            const deleted = await BookCopy.destroy({ where: { id:bookCopyId } });
+            return  deleted === 1;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
     }
 }
