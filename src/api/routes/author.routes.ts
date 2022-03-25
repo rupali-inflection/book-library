@@ -1,5 +1,4 @@
 
-
 import { AuthorController } from 'api/controllers/author.controller';
 import express from 'express';
 import { Loader } from 'startup/loader';

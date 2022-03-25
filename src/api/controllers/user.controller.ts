@@ -27,7 +27,7 @@ export class UserController extends BaseController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('User.getById', request, response);
+            await this.setContext('User.GetById', request, response);
 
             const userId: string = await UserValidator.get(request, response);
 
@@ -36,7 +36,7 @@ export class UserController extends BaseController {
             ResponseHandler.success(
                 request,
                 response,
-                'User get by id!',
+                'User Get by id!',
                 200,
                 {
                     entity: userdetails,
@@ -54,7 +54,7 @@ export class UserController extends BaseController {
 
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('User.create', request, response);
+            this.setContext('User.Create', request, response,false);
             const domainData: UserDomainModel = await UserValidator.create(request, response);
 
             const userdetails: UserDetailsDto = await this._service.create(domainData);
@@ -105,14 +105,14 @@ export class UserController extends BaseController {
     };
     
     delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        try { 
-            await this.setContext('User.delete', request, response);
+        try {
+            await this.setContext('User.Delete', request, response);
 
             const userId: string = await UserValidator.delete(request, response);
 
             const deleted = await this._service.delete(userId);
             if (!deleted) {
-                throw new ApiError(400, 'User device details record cannot be deleted.');
+                throw new ApiError(400, 'User  details cannot be deleted.');
             }
 
             ResponseHandler.success(

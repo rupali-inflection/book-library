@@ -29,7 +29,7 @@ export class AuthorController extends BaseController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('Author.getById', request, response);
+            await this.setContext('Author.GetById', request, response);
 
             const authorId: string = await AuthorValidator.get(request, response);
 
@@ -56,7 +56,7 @@ export class AuthorController extends BaseController {
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('Author.create', request, response);
+            await this.setContext('Author.Create', request, response);
             const domainData: AuthorDomainModel = await AuthorValidator.create(request, response);
 
             const authordetails: AuthorDetailsDto = await this._service.create(domainData);

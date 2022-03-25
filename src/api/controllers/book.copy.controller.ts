@@ -21,15 +21,9 @@ export class BookCopyController extends BaseController {
         this._authorizer = Loader.authorizer;
     }
 
-    //#endregion
-
-    delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
-    };
-
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('BookCopy.getById', request, response);
+            await this.setContext('BookCopy.GetById', request, response);
 
             const bookCopyId: string = await BookCopyValidator.get(request, response);
 
@@ -56,14 +50,14 @@ export class BookCopyController extends BaseController {
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('BookCopy.create', request, response);
+            await this.setContext('BookCopy.Create', request, response);
             const domainData: BookCopyDomainModel = await BookCopyValidator.create(request, response);
 
             const bookCopydetails: BookCopyDetailsDto = await this._service.create(domainData);
             ResponseHandler.success(
                 request,
                 response,
-                'BookCopy created!',
+                'BookCopy Created!',
                 200,
                 {
                     entity: bookCopydetails,
@@ -75,4 +69,10 @@ export class BookCopyController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+   
+
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        throw new Error('Method not implemented.');
+    };
+
 }

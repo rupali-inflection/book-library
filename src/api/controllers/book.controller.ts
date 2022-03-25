@@ -29,7 +29,7 @@ export class BookController extends BaseController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('Book.getById', request, response);
+            await this.setContext('Book.GetById', request, response);
 
             const bookId: string = await BookValidator.get(request, response);
 
@@ -56,7 +56,7 @@ export class BookController extends BaseController {
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('Book.create', request, response);
+            this.setContext('Book.Create', request, response);
             const domainData: BookDomainModel = await BookValidator.create(request, response);
 
             const bookdetails: BookDetailsDto = await this._service.create(domainData);
