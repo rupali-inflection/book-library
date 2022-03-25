@@ -58,5 +58,9 @@ export class UserService {
 
         return { user: user, accessToken: accessToken };
     };
+
+    delete = async (userId: string): Promise<boolean> => {
+        return await this._userRepo.delete(userId);
+    };
 }
 

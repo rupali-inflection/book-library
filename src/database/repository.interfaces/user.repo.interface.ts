@@ -7,6 +7,8 @@ export interface IUserRepo {
     findOneUser(options: UserFindOptions): Promise<UserDetailsDto>;
     findUsersByRoleId(id: string): UserDetailsDto[] | PromiseLike<UserDetailsDto[]>;
     createUser(userDetails: UserDomainModel): Promise<UserDetailsDto>;
+    
+    delete(userId: string): Promise<boolean>;
 
 }
 export class UserFindOptions {

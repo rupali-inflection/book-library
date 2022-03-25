@@ -25,7 +25,7 @@ export class UserController extends BaseController {
 
     //#endregion
 
- getById = async (request: express.Request, response: express.Response): Promise<void> => {
+    getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             await this.setContext('User.getById', request, response);
 

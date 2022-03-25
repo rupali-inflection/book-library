@@ -7,6 +7,7 @@
         "Role": "Admin",
         "Privileges": ["User.getById", 
             "User.create",
+            "User.delete",
              "Author.create",
              "Author.getById",
              "Book.getById",

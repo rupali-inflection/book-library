@@ -1,4 +1,6 @@
 
+import { ApiError } from 'common/api.error';
+import { Logger } from 'common/logger';
 import { IUserRepo,UserFindOptions } from 'database/repository.interfaces/user.repo.interface';
 import { UserDomainModel } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
@@ -89,4 +91,15 @@ export class UserRepo implements IUserRepo {
 
         return dto;
     }
+    
+    async delete(userId: string): Promise<boolean>  {
+        try {
+            const deleted = await User.destroy({ where: { id:userId} });
+            return  deleted === 1;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    }
+
 }
