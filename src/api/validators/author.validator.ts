@@ -32,7 +32,7 @@ export class AuthorValidator {
             }
 
             const createAuthorDomainModel: AuthorDomainModel = {
-                id: request.body.id,
+              
                 FirstName: request.body.FirstName,
                 LastName:request.body. LastName
             };

@@ -34,7 +34,7 @@ export class BookValidator {
             }
 
             const createBookDomainModel: BookDomainModel = {
-                id: request.body.id,
+               
                 Name:  request.body. Name,
                 Summary:  request.body.Summary,
                 PublishedAt:  request.body.Published ,
