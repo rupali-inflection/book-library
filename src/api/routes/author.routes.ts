@@ -1,7 +1,7 @@
 
-import { AuthorController } from 'api/controllers/author.controller';
+import { AuthorController } from '../../api/controllers/author.controller';
 import express from 'express';
-import { Loader } from 'startup/loader';
+import { Loader } from '../../startup/loader';
 export const register = (app: express.Application): void => {
     const router = express.Router();
     const authenticator = Loader.authenticator;

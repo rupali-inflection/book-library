@@ -1,5 +1,5 @@
 import { IAuthenticator } from 'auth/authenticator.interface';
-import { Logger } from 'common/logger';
+import { Logger } from '../../common/logger';
 import { AuthenticationResult } from 'domain.types/auth/auth.domain.types';
 import { CurrentUser } from 'domain.types/miscellaneous/current.user';
 import express from 'express';

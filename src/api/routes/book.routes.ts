@@ -1,6 +1,6 @@
-import { BookController } from 'api/controllers/book.controller';
+import { BookController } from '../../api/controllers/book.controller';
 import express from 'express';
-import { Loader } from 'startup/loader';
+import { Loader } from '../../startup/loader';
 
 
 

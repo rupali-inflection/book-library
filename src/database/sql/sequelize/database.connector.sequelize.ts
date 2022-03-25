@@ -1,9 +1,9 @@
-import { Logger } from "common/logger";
+import { Logger } from "../../../common/logger";
 import { IDatabaseConnector } from "../database.connector.interface";
 import { Dialect } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { DbConfig } from "./datatbase.config";
-import { ConfigurationManager } from "config/configuration.manager";
+import { ConfigurationManager } from "../../../config/configuration.manager";
 import { PostgresqlClient } from "./dilect.clients/postgresql.client";
 
 export class DatabaseConnector_Sequelize implements IDatabaseConnector {

@@ -1,6 +1,6 @@
 
-import { ApiError } from 'common/api.error';
-import { Logger } from 'common/logger';
+import { ApiError } from '../../../../common/api.error';
+import { Logger } from '../../../../common/logger';
 import { IBookRepo } from 'database/repository.interfaces/book.repo.interface';
 import { BookDomainModel } from 'domain.types/book/book.domain.model';
 

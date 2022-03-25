@@ -1,5 +1,5 @@
 import express from 'express';
-import { Loader } from 'startup/loader';
+import { Loader } from '../../startup/loader';
 //import { Loader } from '../../startup/loader';
 import { UserController } from '../controllers/user.controller';
 

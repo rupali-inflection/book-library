@@ -1,5 +1,5 @@
-import { ApiError } from "common/api.error";
-import { Logger } from "common/logger";
+import { ApiError } from "../../../../common/api.error";
+import { Logger } from "../../../../common/logger";
 import { IAuthorRepo } from "database/repository.interfaces/author.repo.interface";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
 import { AuthorDetailsDto } from "domain.types/author/author.dto";

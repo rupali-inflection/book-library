@@ -1,13 +1,13 @@
 import { Authorizer } from "auth/authorizer";
-import { AuthorService } from "services/author.service";
-import { Loader } from "startup/loader";
+import { AuthorService } from "../../services/author.service";
+import { Loader } from "../../startup/loader";
 import { BaseController } from "./base.controller";
 import express from 'express';
-import { AuthorValidator } from "api/validators/author.validator";
+import { AuthorValidator } from "../../api/validators/author.validator";
 import { AuthorDetailsDto } from "domain.types/author/author.dto";
-import { ResponseHandler } from "common/response.handler";
+import { ResponseHandler } from "../../common/response.handler";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
-import { ApiError } from "common/api.error";
+import { ApiError } from "../../common/api.error";
 
 export class AuthorController extends BaseController {
     //#region member variables and constructors

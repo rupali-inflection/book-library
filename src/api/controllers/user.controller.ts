@@ -1,14 +1,15 @@
-
-import { UserValidator } from 'api/validators/user.validator';
-import { Authorizer } from 'auth/authorizer';
-import { ApiError } from 'common/api.error';
-import { ResponseHandler } from 'common/response.handler';
-import { UserDomainModel, UserLoginDetails } from 'domain.types/user/user.domain.model';
-import { UserDetailsDto } from 'domain.types/user/user.dto';
 import express from 'express';
-import { UserService } from 'services/user.service';
-import { Loader } from 'startup/loader';
+import { UserValidator } from '../validators/user.validator';
+import { Authorizer } from '../../auth/authorizer';
+import { ApiError } from '../../common/api.error';
+import { ResponseHandler } from '../../common/response.handler';
+import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.domain.model';
+import { UserDetailsDto } from '../../domain.types/user/user.dto';
+import { UserService } from '../../services/user.service';
+import { Loader } from '../../startup/loader';
 import { BaseController } from './base.controller';
+
+
 
 export class UserController extends BaseController {
     //#region member variables and constructors

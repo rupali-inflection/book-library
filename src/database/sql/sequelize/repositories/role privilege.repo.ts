@@ -1,5 +1,5 @@
-import { ApiError } from 'common/api.error';
-import { Logger } from 'common/logger';
+import { ApiError } from '../../../../common/api.error';
+import { Logger } from '../../../../common/logger';
 import { IRolePrivilegeRepo } from 'database/repository.interfaces/role.privilege.repo.interface';
 import { RolePrivilegeDto } from 'domain.types/role/role.privilege.dto';
 import { Op } from 'sequelize';

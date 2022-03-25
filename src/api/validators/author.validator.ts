@@ -1,5 +1,5 @@
-import { Helper } from "common/helper";
-import { ResponseHandler } from "common/response.handler";
+import { Helper } from "../../common/helper";
+import { ResponseHandler } from "../../common/response.handler";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
 
 import express from 'express';

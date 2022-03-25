@@ -1,6 +1,6 @@
 
-import { ApiError } from 'common/api.error';
-import { Logger } from 'common/logger';
+import { ApiError } from '../../../../common/api.error';
+import { Logger } from '../../../../common/logger';
 import { IUserRepo,UserFindOptions } from 'database/repository.interfaces/user.repo.interface';
 import { UserDomainModel } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
