@@ -1,6 +1,7 @@
 
 import { UserValidator } from 'api/validators/user.validator';
 import { Authorizer } from 'auth/authorizer';
+import { ApiError } from 'common/api.error';
 import { ResponseHandler } from 'common/response.handler';
 import { UserDomainModel, UserLoginDetails } from 'domain.types/user/user.domain.model';
 import { UserDetailsDto } from 'domain.types/user/user.dto';
@@ -24,11 +25,7 @@ export class UserController extends BaseController {
 
     //#endregion
 
-    delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
-    };
-
-    getById = async (request: express.Request, response: express.Response): Promise<void> => {
+ getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             await this.setContext('User.getById', request, response);
 
@@ -106,5 +103,27 @@ export class UserController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
-            
+    
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        try { 
+            await this.setContext('User.delete', request, response);
+
+            const userId: string = await UserValidator.delete(request, response);
+
+            const deleted = await this._service.delete(userId);
+            if (!deleted) {
+                throw new ApiError(400, 'User device details record cannot be deleted.');
+            }
+
+            ResponseHandler.success(
+                request,
+                response,
+                'User  deleted successfully!', 200, {
+                    Deleted : true,
+                });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
+    
 }
