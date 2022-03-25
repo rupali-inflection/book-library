@@ -7,6 +7,7 @@ import { AuthorValidator } from "api/validators/author.validator";
 import { AuthorDetailsDto } from "domain.types/author/author.dto";
 import { ResponseHandler } from "common/response.handler";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
+import { ApiError } from "common/api.error";
 
 export class AuthorController extends BaseController {
     //#region member variables and constructors
@@ -20,12 +21,6 @@ export class AuthorController extends BaseController {
         this._service = Loader.container.resolve(AuthorService);
         this._authorizer = Loader.authorizer;
     }
-
-    //#endregion
-
-    delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
-    };
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
@@ -75,4 +70,27 @@ export class AuthorController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+    
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('Author.Delete', request, response);
+
+            const authorId: string = await AuthorValidator.delete(request, response);
+
+            const deleted = await this._service.delete(authorId);
+            if (!deleted) {
+                throw new ApiError(400, 'Author  details cannot be deleted.');
+            }
+
+            ResponseHandler.success(
+                request,
+                response,
+                'Author  deleted successfully!', 200, {
+                    Deleted : true,
+                });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
+    
 }

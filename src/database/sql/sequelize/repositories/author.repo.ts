@@ -1,3 +1,5 @@
+import { ApiError } from "common/api.error";
+import { Logger } from "common/logger";
 import { IAuthorRepo } from "database/repository.interfaces/author.repo.interface";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
 import { AuthorDetailsDto } from "domain.types/author/author.dto";
@@ -29,5 +31,15 @@ export class AuthorRepo implements IAuthorRepo {
         const author: Author = await Author.create(entity);
         const dto: AuthorDetailsDto = await AuthorMapper.toDetailsDto(author);
         return dto;
+    }
+
+    async delete(authorId : string): Promise<boolean>  {
+        try {
+            const deleted = await Author.destroy({ where: { id:authorId } });
+            return  deleted === 1;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
     }
 }

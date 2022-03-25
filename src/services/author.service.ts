@@ -22,4 +22,8 @@ export class AuthorService {
 
         return authorDetailsDto;
     };
+
+    delete = async (authorId: string): Promise<boolean> => {
+        return await this._authorRepo.delete(authorId);
+    };
 }
