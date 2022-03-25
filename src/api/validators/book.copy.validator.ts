@@ -31,7 +31,6 @@ export class BookCopyValidator {
             }
 
             const createBookCopyDomainModel: BookCopyDomainModel = {
-                id: request.body.id,
                 BookId: request.body.BookId,
             };
 

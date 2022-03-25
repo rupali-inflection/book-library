@@ -7,6 +7,7 @@ import { BookDomainModel } from "domain.types/book/book.domain.model";
 import { BookDetailsDto } from "domain.types/book/book.dto";
 import { BookValidator } from "api/validators/book.validator";
 import { ResponseHandler } from "common/response.handler";
+import { ApiError } from "common/api.error";
 
 export class BookController extends BaseController {
     //#region member variables and constructors
@@ -23,9 +24,6 @@ export class BookController extends BaseController {
 
     //#endregion
 
-    delete = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
-    };
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
@@ -75,4 +73,27 @@ export class BookController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+    
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('Book.Delete', request, response);
+     
+            const bookId: string = await BookValidator.delete(request, response);
+     
+            const deleted = await this._service.delete(bookId);
+            if (!deleted) {
+                throw new ApiError(400, 'Book  details cannot be deleted.');
+            }
+     
+            ResponseHandler.success(
+                request,
+                response,
+                'Book  deleted successfully!', 200, {
+                    Deleted : true,
+                });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
+     
 }

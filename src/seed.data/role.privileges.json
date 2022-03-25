@@ -1,17 +1,19 @@
 [
     {
         "Role": "User",
-        "Privileges": ["User.getById"]
+        "Privileges": ["User.GetById"]
     },
     {
         "Role": "Admin",
-        "Privileges": ["User.getById", 
-            "User.create",
-            "User.delete",
-             "Author.create",
-             "Author.getById",
-             "Book.getById",
-             "Book.create"
+        "Privileges": ["User.GetById", 
+            "User.Create",
+            "User.Delete",
+             "Author.Create",
+             "Author.GetById",
+             "Book.GetById",
+             "Book.Create",
+             "BookCopy.Create",
+             "BookCopy.GetById"
 
             ]
     }

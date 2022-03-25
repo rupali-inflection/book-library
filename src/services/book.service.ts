@@ -23,4 +23,8 @@ export class BookService {
 
         return bookDetailsDto;
     };
+
+    delete = async (bookId: string): Promise<boolean> => {
+        return await this._bookRepo.delete(bookId);
+    };
 }

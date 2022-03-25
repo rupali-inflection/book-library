@@ -5,7 +5,7 @@ export interface BookBorrowLogDetailsDto {
 
     ReturnAt: Date;
 
-    BorrowedByUserId: Date;
+    BorrowedByUserId: string;
 
-    BookcopyId:string;
+    BookCopyId:string;
 }
