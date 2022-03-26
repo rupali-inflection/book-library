@@ -16,7 +16,8 @@
              "Book.Delete",
              "BookCopy.Create",
              "BookCopy.GetById",
-             "BookCopy.Delete"
+             "BookCopy.Delete",
+             "User.Search"
             ]
     }
 ]
