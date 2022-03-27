@@ -116,18 +116,6 @@ export class UserValidator {
                 .escape()
                 .run(request);
 
-            await query('createdDateFrom').optional()
-                .isDate()
-                .trim()
-                .escape()
-                .run(request);
-
-            await query('createdDateTo').optional()
-                .isDate()
-                .trim()
-                .escape()
-                .run(request);
-
             await query('orderBy').optional()
                 .trim()
                 .escape()
