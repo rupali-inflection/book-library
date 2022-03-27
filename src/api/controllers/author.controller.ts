@@ -46,7 +46,26 @@ export class AuthorController extends BaseController {
     };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
+        try {
+            await this.setContext('Author.Search', request, response);
+
+            const filters = await AuthorValidator.search(request,response);
+
+            const searchResults = await this._service.search(filters);
+
+            const count = searchResults.Items.length;
+
+            const message =
+                count === 0
+                    ? 'No records found!'
+                    : `Total ${count} Author  details records retrieved successfully!`;
+
+            ResponseHandler.success(request, response, message, 200, {
+                AuthorDetailsRecord : searchResults });
+
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
     };
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {

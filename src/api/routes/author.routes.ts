@@ -8,7 +8,7 @@ export const register = (app: express.Application): void => {
     const controller = new AuthorController();
 
     router.post('/',authenticator.authenticateUser,controller.create);
-   
+    router.get('/search', authenticator.authenticateUser,controller.search);
     router.get('/:id', authenticator.authenticateUser, controller.getById);
     router.delete('/:id', authenticator.authenticateUser, controller.delete);
 
