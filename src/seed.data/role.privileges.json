@@ -7,6 +7,7 @@
         "Role": "Admin",
         "Privileges": ["User.GetById", 
             "User.Create",
+            "User.Search",
             "User.Delete",
              "Author.Create",
              "Author.GetById",
@@ -17,7 +18,10 @@
              "BookCopy.Create",
              "BookCopy.GetById",
              "BookCopy.Delete",
-             "User.Search"
+             "BookBorrowLog.Create",
+             "BookBorrowLog.GetById",
+             "BookBorrowLog.Delete"
+             
             ]
     }
 ]

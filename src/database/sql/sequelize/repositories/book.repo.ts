@@ -1,10 +1,10 @@
 
 import { ApiError } from '../../../../common/api.error';
 import { Logger } from '../../../../common/logger';
-import { IBookRepo } from 'database/repository.interfaces/book.repo.interface';
-import { BookDomainModel } from 'domain.types/book/book.domain.model';
+import { IBookRepo } from '../../../../database/repository.interfaces/book.repo.interface';
+import { BookDomainModel } from '../../../../domain.types/book/book.domain.model';
 
-import { BookDetailsDto } from 'domain.types/book/book.dto';
+import { BookDetailsDto } from '../../../../domain.types/book/book.dto';
 
 import { BookMapper } from '../mapper/book.mapper';
 import Book from '../models/book.model';

@@ -5,6 +5,7 @@ import { register as registerUserRoutes } from './user.routes';
 import { register as registerBookRoutes } from './book.routes';
 import { register as registerBookCopyRoutes } from './book.copy.routes';
 import { register as registerAuthorRoutes } from './author.routes';
+import { register as registerBookBorrowLogRoutes } from './book.borrow.log.routes';
 
 export class Router {
     private _app = null;
@@ -27,6 +28,7 @@ export class Router {
                 registerBookRoutes(this._app);
                 registerBookCopyRoutes(this._app);
                 registerAuthorRoutes(this._app);
+                registerBookBorrowLogRoutes(this._app);
 
                 resolve(true);
             } catch (error) {
