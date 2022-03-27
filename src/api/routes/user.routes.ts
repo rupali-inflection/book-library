@@ -12,9 +12,9 @@ export const register = (app: express.Application): void => {
 
     router.post('/',controller.create);
     router.post('/login',controller.loginWithPassword);
-    router.get('/:id', authenticator.authenticateUser,controller.getById);
     router.get('/search', authenticator.authenticateUser,controller.search);
-    
+    router.get('/:id', authenticator.authenticateUser,controller.getById);
+  
     router.delete('/:id', authenticator.authenticateUser, controller.delete);
 
     app.use('/api/v1/users', router);

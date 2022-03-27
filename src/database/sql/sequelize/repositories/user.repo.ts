@@ -110,7 +110,7 @@ export class UserRepo implements IUserRepo {
             if (filters.Prefix !== null) {
                 search.where['Prefix'] = filters.Prefix;
             }
-            if (filters.FirstName != null) {
+            if (filters.FirstName !== null) {
                 search.where['FristName'] = filters.FirstName;
             }
             if (filters.MiddleName !== null) {

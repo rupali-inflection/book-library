@@ -170,13 +170,13 @@ export class UserValidator {
         const itemsPerPage = request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: UserSearchFilters = {
-            Prefix: request.query.Prefix,
+            Prefix: request.query.Prefix ?? null,
             FirstName: request.query.FirstName ?? null,
-            MiddleName: request.query.MiddleName,
-            LastName: request.query.LastName,
+            MiddleName: request.query.MiddleName ?? null,
+            LastName: request.query.LastName ?? null,
             Email: request.query.Email ?? null,
             Password: request.query.Password ?? null,
-            RoleId:request.query.RoleId,
+            RoleId:request.query.RoleId ?? null,
             OrderBy         : request.query.orderBy ?? 'CreatedAt',
             Order           : request.query.order ?? 'descending',
             PageIndex       : pageIndex,
