@@ -54,7 +54,7 @@ export class BookController extends BaseController {
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('Book.Create', request, response);
+            await this.setContext('Book.Create', request, response);
             const domainData: BookDomainModel = await BookValidator.create(request, response);
 
             const bookdetails: BookDetailsDto = await this._service.create(domainData);
