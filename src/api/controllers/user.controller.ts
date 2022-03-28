@@ -1,15 +1,14 @@
+
+import { UserValidator } from 'api/validators/user.validator';
+import { Authorizer } from 'auth/authorizer';
+import { ApiError } from 'common/api.error';
+import { ResponseHandler } from 'common/response.handler';
+import { UserDomainModel, UserLoginDetails } from 'domain.types/user/user.domain.model';
+import { UserDetailsDto } from 'domain.types/user/user.dto';
 import express from 'express';
-import { Authorizer } from '../../auth/authorizer';
-import { ApiError } from '../../common/api.error';
-import { ResponseHandler } from '../../common/response.handler';
-import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.domain.model';
-import { UserDetailsDto } from '../../domain.types/user/user.dto';
-import { UserService } from '../../services/user.service';
-import { Loader } from '../../startup/loader';
-import { UserValidator } from '../validators/user.validator';
+import { UserService } from 'services/user.service';
+import { Loader } from 'startup/loader';
 import { BaseController } from './base.controller';
-
-
 
 export class UserController extends BaseController {
     //#region member variables and constructors
@@ -50,28 +49,9 @@ export class UserController extends BaseController {
     };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            await this.setContext('User.Search', request, response);
-
-            const filters = await UserValidator.search(request,response);
-           
-            const searchResults = await this._service.search(filters);
-
-            const count = searchResults.Items.length;
-
-            const message =
-                count === 0
-                    ? 'No records found!'
-                    : `Total ${count} user  details records retrieved successfully!`;
-                    
-            ResponseHandler.success(request, response, message, 200, {
-                UserDetailsRecord : searchResults });
-
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
+        throw new Error('Method not implemented.');
     };
-               
+
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             this.setContext('User.Create', request, response,false);

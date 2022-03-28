@@ -1,13 +1,13 @@
 import { Authorizer } from "auth/authorizer";
+import { BookService } from "services/book.service";
+import { Loader } from "startup/loader";
+import express from 'express';
+import { BaseController } from "./base.controller";
 import { BookDomainModel } from "domain.types/book/book.domain.model";
 import { BookDetailsDto } from "domain.types/book/book.dto";
-import express from 'express';
-import { BookValidator } from "../../api/validators/book.validator";
-import { ApiError } from "../../common/api.error";
-import { ResponseHandler } from "../../common/response.handler";
-import { BookService } from "../../services/book.service";
-import { Loader } from "../../startup/loader";
-import { BaseController } from "./base.controller";
+import { BookValidator } from "api/validators/book.validator";
+import { ResponseHandler } from "common/response.handler";
+import { ApiError } from "common/api.error";
 
 export class BookController extends BaseController {
     //#region member variables and constructors
@@ -49,31 +49,12 @@ export class BookController extends BaseController {
     };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            await this.setContext('Book.Search', request, response);
-
-            const filters = await BookValidator.search(request,response);
-
-            const searchResults = await this._service.search(filters);
-
-            const count = searchResults.Items.length;
-
-            const message =
-                count === 0
-                    ? 'No records found!'
-                    : `Total ${count} Book  details records retrieved successfully!`;
-
-            ResponseHandler.success(request, response, message, 200, {
-                BookDetailsRecord : searchResults });
-
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
+        throw new Error('Method not implemented.');
     };
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('Book.Create', request, response);
+            this.setContext('Book.Create', request, response);
             const domainData: BookDomainModel = await BookValidator.create(request, response);
 
             const bookdetails: BookDetailsDto = await this._service.create(domainData);

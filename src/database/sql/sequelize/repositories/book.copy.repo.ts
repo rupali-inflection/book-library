@@ -1,5 +1,5 @@
-import { ApiError } from "../../../../common/api.error";
-import { Logger } from "../../../../common/logger";
+import { ApiError } from "common/api.error";
+import { Logger } from "common/logger";
 import { IBookCopyRepo } from "database/repository.interfaces/book.copy.repo.interface";
 import { BookCopyDomainModel } from "domain.types/book.copy/book.copy.domain.model";
 import { BookCopyDetailsDto } from "domain.types/book.copy/book.copy.dto";

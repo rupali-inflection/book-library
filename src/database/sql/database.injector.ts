@@ -1,4 +1,4 @@
-import { ConfigurationManager } from '../../config/configuration.manager';
+import { ConfigurationManager } from 'config/configuration.manager';
 import { DependencyContainer } from 'tsyringe';
 import { SQLInjector } from './sql.injector';
 

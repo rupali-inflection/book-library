@@ -1,5 +1,5 @@
-import { ApiError } from '../../../../common/api.error';
-import { Logger } from '../../../../common/logger';
+import { ApiError } from 'common/api.error';
+import { Logger } from 'common/logger';
 import { IRoleRepo } from 'database/repository.interfaces/user.role.repo.interface';
 import { RoleDto } from 'domain.types/role/role.dto';
 import { Roles } from 'domain.types/role/role.types';

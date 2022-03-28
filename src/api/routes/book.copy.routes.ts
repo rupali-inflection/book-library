@@ -1,7 +1,7 @@
 
-import { BookCopyController } from '../../api/controllers/book.copy.controller';
+import { BookCopyController } from 'api/controllers/book.copy.controller';
 import express from 'express';
-import { Loader } from '../../startup/loader';
+import { Loader } from 'startup/loader';
 
 
 

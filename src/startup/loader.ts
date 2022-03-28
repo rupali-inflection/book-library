@@ -1,10 +1,10 @@
 import { container, DependencyContainer } from 'tsyringe';
-import { Authenticator } from '../auth/authenticator';
+import { Authenticator } from 'auth/authenticator';
 import { Logger } from '../common/logger';
-import { Authorizer } from '../auth/authorizer';
+import { Authorizer } from 'auth/authorizer';
 
 import { Injector } from './injector';
-import { DatabaseConnector } from '../database/sql/database.connector';
+import { DatabaseConnector } from 'database/sql/database.connector';
 import { Seeder } from './seeder';
 
 export class Loader {

@@ -3,9 +3,9 @@ export interface BookBorrowLogDetailsDto {
 
     BorrowedAt: Date;
 
-    ReturnedAt: Date;
+    ReturnAt: Date;
 
-    UserId: string;
+    BorrowedByUserId: string;
 
     BookCopyId:string;
 }

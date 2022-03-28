@@ -1,6 +1,6 @@
-import { AuthorDomainModel } from "../../domain.types/author/auther.domain.model";
-import { AuthorDetailsDto } from "../../domain.types/author/author.dto";
-import { AuthorSearchFilters, AuthorSearchResults } from "../../domain.types/author/author.search";
+import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
+import { AuthorDetailsDto } from "domain.types/author/author.dto";
+
 
 export interface IAuthorRepo {
     getById(authorId: string): Promise<AuthorDetailsDto>;
@@ -8,7 +8,5 @@ export interface IAuthorRepo {
     createAuthor(authorDetails: AuthorDomainModel): Promise<AuthorDetailsDto>;
 
     delete(authorId: string): Promise<boolean>;
-
-    search(filters: AuthorSearchFilters): Promise<AuthorSearchResults>;
 
 }

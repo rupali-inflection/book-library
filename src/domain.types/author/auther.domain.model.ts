@@ -2,6 +2,6 @@ export interface AuthorDomainModel {
     
   FirstName: string;
    
-  LastName: string;
+    LastName: string;
 
     }

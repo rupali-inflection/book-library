@@ -1,6 +1,11 @@
 export interface BookBorrowLogDomainModel {
 
-   UserId: string;
+
+    BorrowedAt: Date;
+
+    ReturnAt: Date;
+
+    BorrowedByUserId: string;
 
     BookCopyId:string;
 }

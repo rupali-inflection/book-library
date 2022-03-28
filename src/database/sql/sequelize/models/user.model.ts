@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Helper } from '../../../../common/helper';
+import { Helper } from 'common/helper';
 import {
     BeforeCreate,
     BeforeUpdate,
