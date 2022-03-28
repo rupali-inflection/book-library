@@ -68,7 +68,7 @@ export class UserValidator {
                 LastName: request.body.LastName,
                 Email: request.body.Email,
                 Password: request.body.Password,
-                RoleId: request.body.RoleId ?? null,
+                RoleId: request.body.RoleId ,
             };
 
             return createUserDomainModel;
@@ -224,7 +224,7 @@ export class UserValidator {
                 LastName: request.body.LastName,
                 Email: request.body.Email,
                 Password: request.body.Password,
-                RoleId: request.body.RoleId ?? null,
+                RoleId: request.body.RoleId ,
             };
 
             return createUserDomainModel;

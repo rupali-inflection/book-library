@@ -45,10 +45,6 @@ export class BookCopyController extends BaseController {
         }
     };
 
-    search = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
-    };
-  
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             await this.setContext('BookCopy.Create', request, response);
@@ -68,6 +64,29 @@ export class BookCopyController extends BaseController {
             );
         } catch (err) {
             ResponseHandler.handleError(request, response, err);
+        }
+    };
+
+    search = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('BookCopy.Search', request, response);
+
+            const filters = await BookCopyValidator.search(request,response);
+
+            const searchResults = await this._service.search(filters);
+
+            const count = searchResults.Items.length;
+
+            const message =
+                count === 0
+                    ? 'No records found!'
+                    : `Total ${count} BookCopy  details records retrieved successfully!`;
+
+            ResponseHandler.success(request, response, message, 200, {
+                BookDetailsRecord : searchResults });
+
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
         }
     };
 
