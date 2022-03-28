@@ -1,5 +1,4 @@
 import express from 'express';
-import { UserValidator } from '../validators/user.validator';
 import { Authorizer } from '../../auth/authorizer';
 import { ApiError } from '../../common/api.error';
 import { ResponseHandler } from '../../common/response.handler';
@@ -7,6 +6,7 @@ import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.
 import { UserDetailsDto } from '../../domain.types/user/user.dto';
 import { UserService } from '../../services/user.service';
 import { Loader } from '../../startup/loader';
+import { UserValidator } from '../validators/user.validator';
 import { BaseController } from './base.controller';
 
 

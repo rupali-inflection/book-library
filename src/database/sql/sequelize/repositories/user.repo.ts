@@ -1,12 +1,12 @@
 
+import { Op } from 'sequelize';
 import { ApiError } from '../../../../common/api.error';
 import { Logger } from '../../../../common/logger';
-import { IUserRepo,UserFindOptions } from 'database/repository.interfaces/user.repo.interface';
-import { UserDomainModel } from 'domain.types/user/user.domain.model';
-import { UserDetailsDto } from 'domain.types/user/user.dto';
-import { Op } from 'sequelize';
-import { UserMapper } from '../mapper/user.mapper';
+import { IUserRepo, UserFindOptions } from '../../../../database/repository.interfaces/user.repo.interface';
+import { UserDomainModel } from '../../../../domain.types/user/user.domain.model';
+import { UserDetailsDto } from '../../../../domain.types/user/user.dto';
 import { UserSearchFilters, UserSearchResults } from '../../../../domain.types/user/user.search.types';
+import { UserMapper } from '../mapper/user.mapper';
 import User from '../models/user.model';
 
 export class UserRepo implements IUserRepo {

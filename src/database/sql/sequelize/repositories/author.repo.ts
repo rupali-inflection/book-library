@@ -1,12 +1,11 @@
 import { ApiError } from "../../../../common/api.error";
 import { Logger } from "../../../../common/logger";
-import { IAuthorRepo } from "database/repository.interfaces/author.repo.interface";
-import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
-import { AuthorDetailsDto } from "domain.types/author/author.dto";
-
+import { IAuthorRepo } from "../../../../database/repository.interfaces/author.repo.interface";
+import { AuthorDomainModel } from "../../../../domain.types/author/auther.domain.model";
+import { AuthorDetailsDto } from "../../../../domain.types/author/author.dto";
+import { AuthorSearchFilters, AuthorSearchResults } from "../../../../domain.types/author/author.search";
 import { AuthorMapper } from "../mapper/author.mapper";
 import Author from "../models/autor.model";
-import { AuthorSearchFilters, AuthorSearchResults } from "domain.types/author/author.search";
 
 export class AuthorRepo implements IAuthorRepo {
     
@@ -93,7 +92,6 @@ export class AuthorRepo implements IAuthorRepo {
             throw new ApiError(500, error.message);
         }
     };
-        
 
     async delete(authorId : string): Promise<boolean>  {
         try {

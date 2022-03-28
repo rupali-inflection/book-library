@@ -1,13 +1,13 @@
 import { Authorizer } from "auth/authorizer";
-import { BookService } from "../../services/book.service";
-import { Loader } from "../../startup/loader";
-import express from 'express';
-import { BaseController } from "./base.controller";
 import { BookDomainModel } from "domain.types/book/book.domain.model";
 import { BookDetailsDto } from "domain.types/book/book.dto";
+import express from 'express';
 import { BookValidator } from "../../api/validators/book.validator";
-import { ResponseHandler } from "../../common/response.handler";
 import { ApiError } from "../../common/api.error";
+import { ResponseHandler } from "../../common/response.handler";
+import { BookService } from "../../services/book.service";
+import { Loader } from "../../startup/loader";
+import { BaseController } from "./base.controller";
 
 export class BookController extends BaseController {
     //#region member variables and constructors

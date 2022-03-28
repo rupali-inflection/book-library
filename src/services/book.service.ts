@@ -1,9 +1,9 @@
+import { inject, injectable } from "tsyringe";
 import { IAuthorRepo } from "../database/repository.interfaces/author.repo.interface";
 import { IBookRepo } from "../database/repository.interfaces/book.repo.interface";
 import { BookDomainModel } from "../domain.types/book/book.domain.model";
 import { BookDetailsDto } from "../domain.types/book/book.dto";
 import { BookSearchFilters, BookSearchResults } from "../domain.types/book/book.search.type";
-import { inject, injectable } from "tsyringe";
 
 @injectable()
 export class BookService {

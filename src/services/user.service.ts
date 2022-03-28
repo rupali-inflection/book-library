@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe';
 import { ApiError } from '../common/api.error';
 import { Helper } from '../common/helper';
 import { IUserRepo } from '../database/repository.interfaces/user.repo.interface';
@@ -7,9 +8,8 @@ import { RoleDto } from '../domain.types/role/role.dto';
 import { Roles } from '../domain.types/role/role.types';
 import { UserDomainModel, UserLoginDetails } from '../domain.types/user/user.domain.model';
 import { UserDetailsDto } from '../domain.types/user/user.dto';
-import { Loader } from '../startup/loader';
-import { inject, injectable } from 'tsyringe';
 import { UserSearchFilters, UserSearchResults } from '../domain.types/user/user.search.types';
+import { Loader } from '../startup/loader';
 
 @injectable()
 export class UserService {

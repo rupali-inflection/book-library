@@ -1,9 +1,9 @@
+import express from 'express';
+import { body, param, query, validationResult } from 'express-validator';
 import { Helper } from "../../common/helper";
 import { ResponseHandler } from "../../common/response.handler";
-import { BookDomainModel } from "domain.types/book/book.domain.model";
-import express from 'express';
-import { body, oneOf, param, query, validationResult } from 'express-validator';
-import { BookSearchFilters } from "domain.types/book/book.search.type";
+import { BookDomainModel } from "../../domain.types/book/book.domain.model";
+import { BookSearchFilters } from "../../domain.types/book/book.search.type";
 
 export class BookValidator {
     static get = async (request: express.Request, response: express.Response): Promise<string> => {

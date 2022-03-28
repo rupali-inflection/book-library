@@ -1,9 +1,9 @@
 /* eslint-disable newline-per-chained-call */
-import { Helper } from '../../common/helper';
-import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.domain.model';
 import express from 'express';
-import { body, oneOf, param, query, validationResult } from 'express-validator';
+import { body, param, query, validationResult } from 'express-validator';
+import { Helper } from '../../common/helper';
 import { ResponseHandler } from "../../common/response.handler";
+import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.domain.model';
 import { UserSearchFilters } from '../../domain.types/user/user.search.types';
 
 
