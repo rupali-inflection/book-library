@@ -1,13 +1,13 @@
 import { Authorizer } from "auth/authorizer";
-import { AuthorService } from "services/author.service";
-import { Loader } from "startup/loader";
-import { BaseController } from "./base.controller";
-import express from 'express';
-import { AuthorValidator } from "api/validators/author.validator";
-import { AuthorDetailsDto } from "domain.types/author/author.dto";
-import { ResponseHandler } from "common/response.handler";
 import { AuthorDomainModel } from "domain.types/author/auther.domain.model";
-import { ApiError } from "common/api.error";
+import { AuthorDetailsDto } from "domain.types/author/author.dto";
+import express from 'express';
+import { AuthorValidator } from "../../api/validators/author.validator";
+import { ApiError } from "../../common/api.error";
+import { ResponseHandler } from "../../common/response.handler";
+import { AuthorService } from "../../services/author.service";
+import { Loader } from "../../startup/loader";
+import { BaseController } from "./base.controller";
 
 export class AuthorController extends BaseController {
     //#region member variables and constructors
@@ -46,7 +46,26 @@ export class AuthorController extends BaseController {
     };
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
-        throw new Error('Method not implemented.');
+        try {
+            await this.setContext('Author.Search', request, response);
+
+            const filters = await AuthorValidator.search(request,response);
+
+            const searchResults = await this._service.search(filters);
+
+            const count = searchResults.Items.length;
+
+            const message =
+                count === 0
+                    ? 'No records found!'
+                    : `Total ${count} Author  details records retrieved successfully!`;
+
+            ResponseHandler.success(request, response, message, 200, {
+                AuthorDetailsRecord : searchResults });
+
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
     };
   
     create = async (request: express.Request, response: express.Response): Promise<void> => {

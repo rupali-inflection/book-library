@@ -1,5 +1,5 @@
-import { Helper } from "common/helper";
-import { ResponseHandler } from "common/response.handler";
+import { Helper } from "../../common/helper";
+import { ResponseHandler } from "../../common/response.handler";
 import { BookCopyDomainModel } from "domain.types/book.copy/book.copy.domain.model";
 import express from 'express';
 import { body,param, validationResult } from "express-validator";

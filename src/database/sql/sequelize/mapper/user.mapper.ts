@@ -1,4 +1,4 @@
-import { UserDetailsDto } from 'domain.types/user/user.dto';
+import { UserDetailsDto } from '../../../../domain.types/user/user.dto';
 import User from '../models/user.model';
 
 export class UserMapper {
@@ -8,8 +8,8 @@ export class UserMapper {
         }
         const dto: UserDetailsDto = {
             id: entity.id,
-            FirstName: entity.FirstName,
             Prefix: entity.Prefix,
+            FirstName: entity.FirstName,
             MiddleName: entity.MiddleName,
             LastName: entity.LastName,
             Email: entity.Email,
@@ -18,7 +18,6 @@ export class UserMapper {
             UpdatedAt: entity.updatedAt,
             DeletedAt: entity.deletedAt,
         };
-
         return dto;
     };
 }

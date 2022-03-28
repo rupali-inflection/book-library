@@ -1,4 +1,4 @@
-import { Logger } from "common/logger";
+import { Logger } from "../../../../common/logger";
 import { DbConfig } from "../datatbase.config";
 import { Client } from 'pg';
 

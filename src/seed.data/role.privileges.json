@@ -7,16 +7,24 @@
         "Role": "Admin",
         "Privileges": ["User.GetById", 
             "User.Create",
+            "User.Search",
             "User.Delete",
              "Author.Create",
              "Author.GetById",
+             "Author.Search",
              "Author.Delete",
              "Book.GetById",
              "Book.Create",
+             "Book.Search",
              "Book.Delete",
              "BookCopy.Create",
              "BookCopy.GetById",
-             "BookCopy.Delete"
+             "BookCopy.Search",
+             "BookCopy.Delete",
+             "BookBorrowLog.Create",
+             "BookBorrowLog.GetById",
+             "BookBorrowLog.Delete"
+             
             ]
     }
 ]

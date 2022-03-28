@@ -52,14 +52,14 @@ export default class BookBorrowLog extends Model {
         type: DataType.UUID,
         allowNull: false,
     })
-    BookBorrowedByUserId: string;
+    UserId: string;
 
     @BelongsTo(() => User)
-    BookBorrowerUser: User;
+    BorrowerUser: User;
 
     @Column({
         type: DataType.DATE,
-        allowNull: false,
+        allowNull: true,
     })
     BorrowedAt: Date;
 
@@ -67,11 +67,12 @@ export default class BookBorrowLog extends Model {
         type: DataType.DATE,
         allowNull: true,
     })
-    ReturnedAt: Date;
+    ReturnedAt:Date ;
 
     @Column
     @CreatedAt
     CreatedAt: Date;
+ 
 
     @UpdatedAt
     UpdatedAt: Date;
