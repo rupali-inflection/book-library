@@ -16,4 +16,3 @@ export const register = (app: express.Application): void => {
 
     app.use('/api/v1/auth', router);
 };
-      

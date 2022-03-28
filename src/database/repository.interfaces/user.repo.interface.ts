@@ -9,7 +9,8 @@ export interface IUserRepo {
     findUsersByRoleId(id: string): UserDetailsDto[] | PromiseLike<UserDetailsDto[]>;
     createUser(userDetails: UserDomainModel): Promise<UserDetailsDto>;
     search(filters: UserSearchFilters): Promise<UserSearchResults>;
-    
+    update(userId: string, userDomainModel: UserDomainModel):
+    Promise<UserDetailsDto>;
     delete(userId: string): Promise<boolean>;
 
 }

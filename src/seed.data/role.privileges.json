@@ -9,6 +9,7 @@
             "User.Create",
             "User.Search",
             "User.Delete",
+            "User.Update",
              "Author.Create",
              "Author.GetById",
              "Author.Search",

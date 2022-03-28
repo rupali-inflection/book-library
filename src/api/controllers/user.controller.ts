@@ -1,3 +1,4 @@
+import { UserValidator } from '../../api/validators/user.validator';
 import express from 'express';
 import { Authorizer } from '../../auth/authorizer';
 import { ApiError } from '../../common/api.error';
@@ -6,7 +7,6 @@ import { UserDomainModel, UserLoginDetails } from '../../domain.types/user/user.
 import { UserDetailsDto } from '../../domain.types/user/user.dto';
 import { UserService } from '../../services/user.service';
 import { Loader } from '../../startup/loader';
-import { UserValidator } from '../validators/user.validator';
 import { BaseController } from './base.controller';
 
 
@@ -28,16 +28,16 @@ export class UserController extends BaseController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('User.GetById', request, response);
+            await this.setContext('User.GetByuserId', request, response);
 
-            const userId: string = await UserValidator.get(request, response);
+            const useruserId: string = await UserValidator.get(request, response);
 
-            const userdetails: UserDetailsDto = await this._service.getById(userId);
+            const userdetails: UserDetailsDto = await this._service.getById(useruserId);
 
             ResponseHandler.success(
                 request,
                 response,
-                'User Get by id!',
+                'User Get by userId!',
                 200,
                 {
                     entity: userdetails,
@@ -123,14 +123,39 @@ export class UserController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+
+    update = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('User.Update', request, response);
+
+            const domainModel = await UserValidator.update(request);
+
+            const userId: string = await UserValidator.get(request,response);
+            const existingRecord = await this._service.getById(userId);
+            if (existingRecord == null) {
+                throw new ApiError(404, 'User record not found.');
+            }
+
+            const updated = await this._service.update(userId , domainModel);
+            if (updated == null) {
+                throw new ApiError(400, 'Unable to update user  record!');
+            }
+
+            ResponseHandler.success(request, response, 'User  record updated successfully!', 200, {
+                User : updated,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
     
     delete = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             await this.setContext('User.Delete', request, response);
 
-            const userId: string = await UserValidator.delete(request, response);
+            const useruserId: string = await UserValidator.delete(request, response);
 
-            const deleted = await this._service.delete(userId);
+            const deleted = await this._service.delete(useruserId);
             if (!deleted) {
                 throw new ApiError(400, 'User  details cannot be deleted.');
             }

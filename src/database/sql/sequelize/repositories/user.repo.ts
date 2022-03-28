@@ -9,6 +9,7 @@ import { UserSearchFilters, UserSearchResults } from '../../../../domain.types/u
 import { UserMapper } from '../mapper/user.mapper';
 import User from '../models/user.model';
 
+
 export class UserRepo implements IUserRepo {
     getById = async (userId: string): Promise<UserDetailsDto> => {
         const user: User = await User.findOne({
@@ -93,16 +94,42 @@ export class UserRepo implements IUserRepo {
         return dto;
     }
     
-    async delete(userId: string): Promise<boolean>  {
+    update = async (userId: string, userDomainModel: UserDomainModel):
+    Promise<UserDetailsDto> => {
         try {
-            const deleted = await User.destroy({ where: { id:userId} });
-            return  deleted === 1;
+            const user = await User.findByPk(userId);
+
+            if (userDomainModel.Prefix != null) {
+                user.Prefix = userDomainModel.Prefix;
+            }
+            if (userDomainModel.FirstName != null) {
+                user.FirstName = userDomainModel.FirstName;
+            }
+            if (userDomainModel.MiddleName != null) {
+                user.MiddleName = userDomainModel.MiddleName;
+            }
+            if (userDomainModel.LastName != null) {
+                user.LastName = userDomainModel.LastName;
+            }
+            if (userDomainModel.Email != null) {
+                user.Email = userDomainModel.Email;
+            }
+            if (userDomainModel.Password != null) {
+                user.Password = userDomainModel.Password;
+            }
+            if (userDomainModel.RoleId != null) {
+                user.RoleId = userDomainModel.RoleId;
+            }
+            await user.save();
+
+            const dto = UserMapper.toDetailsDto(user);
+            return dto;
         } catch (error) {
             Logger.instance().log(error.message);
             throw new ApiError(500, error.message);
         }
-    }
-
+    };
+    
     search = async (filters: UserSearchFilters): Promise<UserSearchResults> => {
         try {
             const search = { where: {} };
@@ -176,5 +203,13 @@ export class UserRepo implements IUserRepo {
         }
     };
         
-
+    async delete(userId: string): Promise<boolean>  {
+        try {
+            const deleted = await User.destroy({ where: { id:userId} });
+            return  deleted === 1;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    }
 }

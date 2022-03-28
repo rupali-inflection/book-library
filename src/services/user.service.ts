@@ -30,6 +30,11 @@ export class UserService {
         return userDetailsDto;
     };
     
+    update = async (userId: string, userDomainModel: UserDomainModel):
+    Promise<UserDetailsDto> => {
+        return await this._userRepo.update(userId, userDomainModel);
+    };
+    
     loginWithPassword = async (
         loginModel: UserLoginDetails
     ): Promise<{ user: UserDetailsDto; accessToken: string }> => {

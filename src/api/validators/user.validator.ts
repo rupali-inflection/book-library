@@ -1,5 +1,5 @@
 /* eslint-disable newline-per-chained-call */
-import express from 'express';
+import express, { response } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import { Helper } from '../../common/helper';
 import { ResponseHandler } from "../../common/response.handler";
@@ -172,7 +172,67 @@ export class UserValidator {
         };
         return filters;
     }
-  
+
+    static update = async (request: express.Request): Promise<UserDomainModel> => {
+        try {
+           
+            await query('Prefix').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('FristName').optional()
+                .trim()
+                .escape()
+                .run(request);
+            await query('MiddleName').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('LastName').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('Email').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('Password').optional()
+                .isUUID()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('RoleId').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            
+            }
+
+            const createUserDomainModel: UserDomainModel = {
+                Prefix: request.body.prefix,
+                FirstName: request.body.FirstName,
+                MiddleName: request.body.MiddleName,
+                LastName: request.body.LastName,
+                Email: request.body.Email,
+                Password: request.body.Password,
+                RoleId: request.body.RoleId ?? null,
+            };
+
+            return createUserDomainModel;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
+      
     static delete = async (request: express.Request, response: express.Response): Promise<string> => {
         try {
             await param('id').trim().escape().isUUID().run(request);
