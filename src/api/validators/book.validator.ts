@@ -37,7 +37,7 @@ export class BookValidator {
                
                 Name:  request.body. Name,
                 Summary:  request.body.Summary,
-                PublishedAt:  request.body.Published ,
+                PublishedAt:  request.body.PublishedAt ,
                 AuthorId: request.body.AuthorId ,
             };
 
