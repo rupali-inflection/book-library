@@ -62,7 +62,7 @@ export class UserValidator {
             }
 
             const createUserDomainModel: UserDomainModel = {
-                Prefix: request.body.prefix,
+                Prefix: request.body.Prefix,
                 FirstName: request.body.FirstName,
                 MiddleName: request.body.MiddleName,
                 LastName: request.body.LastName,
