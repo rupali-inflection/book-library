@@ -30,9 +30,9 @@ export class UserController extends BaseController {
         try {
             await this.setContext('User.GetByuserId', request, response);
 
-            const useruserId: string = await UserValidator.get(request, response);
+            const userId: string = await UserValidator.get(request, response);
 
-            const userdetails: UserDetailsDto = await this._service.getById(useruserId);
+            const userdetails: UserDetailsDto = await this._service.getById(userId);
 
             ResponseHandler.success(
                 request,
@@ -153,9 +153,9 @@ export class UserController extends BaseController {
         try {
             await this.setContext('User.Delete', request, response);
 
-            const useruserId: string = await UserValidator.delete(request, response);
+            const userId: string = await UserValidator.delete(request, response);
 
-            const deleted = await this._service.delete(useruserId);
+            const deleted = await this._service.delete(userId);
             if (!deleted) {
                 throw new ApiError(400, 'User  details cannot be deleted.');
             }

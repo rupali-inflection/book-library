@@ -20,6 +20,11 @@ export class BookBorrowLogService {
         return bookBorrowLogDetailsDto;
     };
 
+    update = async (bookBorrowLogId: string, bookBorrowLogDomainModel: BookBorrowLogDomainModel):
+    Promise<BookBorrowLogDetailsDto> => {
+        return await this._bookBorrowLogRepo.update(bookBorrowLogId, bookBorrowLogDomainModel);
+    };
+
     delete = async (bookBorrowLogId: string): Promise<boolean> => {
         return await this._bookBorrowLogRepo.delete(bookBorrowLogId);
     };

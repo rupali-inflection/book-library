@@ -90,6 +90,25 @@ export class BookCopyRepo implements IBookCopyRepo {
         }
     };
 
+    update = async (bookCopyId: string, bookCopyDomainModel: BookCopyDomainModel):
+    Promise<BookCopyDetailsDto> => {
+        try {
+            const bookCopy = await BookCopy.findByPk(bookCopyId);
+
+            if (bookCopyDomainModel.BookId  != null) {
+                bookCopy.BookId  = bookCopyDomainModel.BookId ;
+            }
+           
+            await bookCopy.save();
+
+            const dto = BookCopyMapper.toDetailsDto(bookCopy);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+
     async delete(bookCopyId: string): Promise<boolean>  {
         try {
             const deleted = await BookCopy.destroy({ where: { id:bookCopyId } });

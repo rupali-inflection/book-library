@@ -1,7 +1,7 @@
 [
     {
         "Role": "User",
-        "Privileges": ["User.GetById"]
+        "Privileges": ["User.GetById","User.Update","BookBorrowLog.Create","BookBorrowLog.Update"]
     },
     {
         "Role": "Admin",
@@ -14,17 +14,21 @@
              "Author.GetById",
              "Author.Search",
              "Author.Delete",
+             "Author.Update",
              "Book.GetById",
              "Book.Create",
              "Book.Search",
              "Book.Delete",
+             "Book.Update",
              "BookCopy.Create",
              "BookCopy.GetById",
              "BookCopy.Search",
              "BookCopy.Delete",
+             "BookCopy.Update",
              "BookBorrowLog.Create",
              "BookBorrowLog.GetById",
-             "BookBorrowLog.Delete"
+             "BookBorrowLog.Delete",
+             "BookBorrowLog.Update"
              
             ]
     }

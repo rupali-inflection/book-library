@@ -30,6 +30,11 @@ export class AuthorService {
         return results;
     };
 
+    update = async (authorId: string, authorDomainModel: AuthorDomainModel):
+    Promise<AuthorDetailsDto> => {
+        return await this._authorRepo.update(authorId, authorDomainModel);
+    };
+
 
     delete = async (authorId: string): Promise<boolean> => {
         return await this._authorRepo.delete(authorId);

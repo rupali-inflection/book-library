@@ -98,6 +98,34 @@ export class BookRepo implements IBookRepo {
         }
     };
 
+    update = async (bookId: string, bookDomainModel: BookDomainModel):
+    Promise<BookDetailsDto> => {
+        try {
+            const book = await Book.findByPk(bookId);
+
+            if (bookDomainModel. Name != null) {
+                book. Name = bookDomainModel. Name;
+            }
+            if (bookDomainModel.Summary != null) {
+                book.Summary = bookDomainModel.Summary;
+            }
+            if (bookDomainModel.PublishedAt != null) {
+                book.PublishedAt = bookDomainModel.PublishedAt;
+            }
+            if (bookDomainModel. AuthorId != null) {
+                book. AuthorId = bookDomainModel. AuthorId;
+            }
+           
+            await book.save();
+
+            const dto = BookMapper.toDetailsDto(book);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+    
     async delete(bookId: string): Promise<boolean>  {
         try {
             const deleted = await Book.destroy({ where: { id:bookId } });

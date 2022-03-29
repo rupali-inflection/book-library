@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import { Helper } from "../../common/helper";
 import { ResponseHandler } from "../../common/response.handler";
@@ -123,6 +123,47 @@ export class BookValidator {
         };
         return filters;
     }
+
+    static update = async (request: express.Request): Promise<BookDomainModel> => {
+        try {
+
+            await query('Name').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('Summary').optional()
+                .trim()
+                .escape()
+                .run(request);
+            await query('PublishedAt ').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('AuthorId ').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+
+            }
+
+            const createBookDomainModel: BookDomainModel = {
+                Name: request.body.Name,
+                Summary  : request.body.Summary  ,
+                PublishedAt : request.body.PublishedAt ,
+                AuthorId : request.body.AuthorId ,
+            };
+
+            return createBookDomainModel;
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
     static delete = async (request: express.Request, response: express.Response): Promise<string> => {
         try {

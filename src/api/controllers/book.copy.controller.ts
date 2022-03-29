@@ -1,4 +1,4 @@
-import { Authorizer } from "auth/authorizer";
+import { Authorizer } from "../../auth/authorizer";
 import { Loader } from "../../startup/loader";
 import express from 'express';
 import { BaseController } from "./base.controller";
@@ -85,6 +85,31 @@ export class BookCopyController extends BaseController {
             ResponseHandler.success(request, response, message, 200, {
                 BookDetailsRecord : searchResults });
 
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
+
+    update = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('BookCopy.Update', request, response);
+
+            const domainModel = await BookCopyValidator.update(request);
+
+            const bookCopyId: string = await BookCopyValidator.get(request,response);
+            const existingRecord = await this._service.getById(bookCopyId);
+            if (existingRecord == null) {
+                throw new ApiError(404, 'BookCopy record not found.');
+            }
+
+            const updated = await this._service.update(bookCopyId , domainModel);
+            if (updated == null) {
+                throw new ApiError(400, 'Unable to update BookCopy  record!');
+            }
+
+            ResponseHandler.success(request, response, 'BookCopy  record updated successfully!', 200, {
+                BookCopy : updated,
+            });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

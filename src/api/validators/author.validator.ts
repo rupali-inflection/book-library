@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import { Helper } from "../../common/helper";
 import { ResponseHandler } from "../../common/response.handler";
@@ -108,6 +108,38 @@ export class AuthorValidator {
         };
         return filters;
     }
+
+    static update = async (request: express.Request): Promise<AuthorDomainModel> => {
+        try {
+           
+            await query('FristName').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            await query('LastName').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            
+            }
+
+            const createAuthorDomainModel: AuthorDomainModel = {
+                
+                FirstName: request.body.FirstName,
+                LastName: request.body.LastName,
+                
+            };
+
+            return createAuthorDomainModel;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
     
     static delete = async (request: express.Request, response: express.Response): Promise<string> => {
         try {

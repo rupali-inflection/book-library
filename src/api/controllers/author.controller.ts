@@ -89,6 +89,31 @@ export class AuthorController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+
+    update = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('Author.Update', request, response);
+
+            const domainModel = await AuthorValidator.update(request);
+
+            const authorId: string = await AuthorValidator.get(request,response);
+            const existingRecord = await this._service.getById(authorId);
+            if (existingRecord == null) {
+                throw new ApiError(404, 'Author record not found.');
+            }
+
+            const updated = await this._service.update(authorId , domainModel);
+            if (updated == null) {
+                throw new ApiError(400, 'Unable to update Author  record!');
+            }
+
+            ResponseHandler.success(request, response, 'Author  record updated successfully!', 200, {
+                Author : updated,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
     
     delete = async (request: express.Request, response: express.Response): Promise<void> => {
         try {

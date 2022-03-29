@@ -23,7 +23,7 @@ import Role from './role.model';
 @Table({
     timestamps: true,
     modelName: 'User',
-    tableName: 'user',
+    tableName: 'users',
     paranoid: true,
     freezeTableName: true,
 })

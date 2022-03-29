@@ -1,6 +1,5 @@
 
 import { inject, injectable } from "tsyringe";
-import { IBookBorrowLogRepo } from "../database/repository.interfaces/book.borrow.log.repo.interface";
 import { IBookCopyRepo } from "../database/repository.interfaces/book.copy.repo.interface";
 import { BookCopyDomainModel } from "../domain.types/book.copy/book.copy.domain.model";
 import { BookCopyDetailsDto } from "../domain.types/book.copy/book.copy.dto";
@@ -8,7 +7,7 @@ import { BookCopySearchFilters, BookCopySearchResults } from "../domain.types/bo
 
 @injectable()
 export class BookCopyService {
-    constructor(@inject('IBookCopyRepo') private _bookCopyRepo: IBookCopyRepo,@inject('IBookBorrowLogRepo') private _bookBorrowLogRepo: IBookBorrowLogRepo) {}
+    constructor(@inject('IBookCopyRepo') private _bookCopyRepo: IBookCopyRepo) {}
     
     getById = async (bookCopyId: string): Promise<BookCopyDetailsDto> => {
         const bookCopyDetailsDto: BookCopyDetailsDto = await this._bookCopyRepo.getById(bookCopyId);
@@ -30,6 +29,11 @@ export class BookCopyService {
         }
         results.Items = items;
         return results;
+    };
+
+    update = async (bookCopyId: string, bookCopyDomainModel: BookCopyDomainModel):
+    Promise<BookCopyDetailsDto> => {
+        return await this._bookCopyRepo.update(bookCopyId, bookCopyDomainModel);
     };
 
     delete = async (bookCopyId: string): Promise<boolean> => {

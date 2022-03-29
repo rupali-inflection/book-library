@@ -93,6 +93,27 @@ export class AuthorRepo implements IAuthorRepo {
         }
     };
 
+    update = async (authorId: string, authorDomainModel: AuthorDomainModel):
+    Promise<AuthorDetailsDto> => {
+        try {
+            const author = await Author.findByPk(authorId);
+            if (authorDomainModel.FirstName != null) {
+                author.FirstName = authorDomainModel.FirstName;
+            }
+           
+            if (authorDomainModel.LastName != null) {
+                author.LastName = authorDomainModel.LastName;
+            }
+            await author.save();
+
+            const dto = AuthorMapper.toDetailsDto(author);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+
     async delete(authorId : string): Promise<boolean>  {
         try {
             const deleted = await Author.destroy({ where: { id:authorId } });

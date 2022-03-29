@@ -67,6 +67,31 @@ export class BookBorrowLogController extends BaseController {
             ResponseHandler.handleError(request, response, err);
         }
     };
+
+    update = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            await this.setContext('BookBorrowLog.Update', request, response);
+
+            const domainModel = await BookBorrowLogValidator.update(request);
+
+            const bookBorrowLogId: string = await BookBorrowLogValidator.get(request,response);
+            const existingRecord = await this._service.getById(bookBorrowLogId);
+            if (existingRecord == null) {
+                throw new ApiError(404, 'BookBorrowLog record not found.');
+            }
+
+            const updated = await this._service.update(bookBorrowLogId , domainModel);
+            if (updated == null) {
+                throw new ApiError(400, 'Unable to update BookBorrowLog  record!');
+            }
+
+            ResponseHandler.success(request, response, 'BookBorrowLog  record updated successfully!', 200, {
+                BookBorrowLog : updated,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
     
     delete = async (request: express.Request, response: express.Response): Promise<void> => {
         try {

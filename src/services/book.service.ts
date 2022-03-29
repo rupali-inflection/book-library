@@ -31,6 +31,11 @@ export class BookService {
         return results;
     };
 
+    update = async (bookId: string, bookDomainModel: BookDomainModel):
+    Promise<BookDetailsDto> => {
+        return await this._bookRepo.update(bookId, bookDomainModel);
+    };
+
     delete = async (bookId: string): Promise<boolean> => {
         return await this._bookRepo.delete(bookId);
     };

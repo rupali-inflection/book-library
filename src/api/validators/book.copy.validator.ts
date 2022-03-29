@@ -1,7 +1,7 @@
 import { Helper } from "../../common/helper";
 import { ResponseHandler } from "../../common/response.handler";
 import { BookCopyDomainModel } from "../../domain.types/book.copy/book.copy.domain.model";
-import express from 'express';
+import express, { response } from 'express';
 import { body, oneOf, param, query, validationResult } from 'express-validator';
 import { BookCopySearchFilters } from "domain.types/book.copy/book.copy.search";
 
@@ -106,6 +106,31 @@ export class BookCopyValidator {
         };
         return filters;
     }
+
+    static update = async (request: express.Request): Promise<BookCopyDomainModel> => {
+        try {
+
+            await query('BookId').optional()
+                .trim()
+                .escape()
+                .run(request);
+
+            const result = validationResult(request);
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+
+            }
+
+            const createBookCopyDomainModel: BookCopyDomainModel = {
+                BookId: request.body.BookId,
+               
+            };
+
+            return createBookCopyDomainModel;
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
     
     static delete = async (request: express.Request, response: express.Response): Promise<string> => {
         try {

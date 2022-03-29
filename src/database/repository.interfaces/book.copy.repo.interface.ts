@@ -8,6 +8,8 @@ export interface IBookCopyRepo {
     createBookCopy(bookCopyDetails: BookCopyDomainModel): Promise<BookCopyDetailsDto>;
 
     search(filters: BookCopySearchFilters): Promise<BookCopySearchResults>;
+    update(bookCopyId: string, bookCopyDomainModel: BookCopyDomainModel):
+    Promise<BookCopyDetailsDto>;
 
     delete(bookCopyId: string): Promise<boolean>;
 

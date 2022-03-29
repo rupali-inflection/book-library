@@ -33,6 +33,31 @@ export class BookBorrowLogRepo implements IBookBorrowLogRepo {
         return dto;
     }
 
+    update = async (bookBorrowLogId: string, bookBorrowLogDomainModel: BookBorrowLogDomainModel):
+    Promise<BookBorrowLogDetailsDto> => {
+        try {
+            const bookBorrowLog = await BookBorrowLog.findByPk(bookBorrowLogId);
+
+            if (bookBorrowLogDomainModel.UserId != null) {
+                bookBorrowLog.UserId = bookBorrowLogDomainModel.UserId;
+            }
+            if (bookBorrowLogDomainModel.BookCopyId != null) {
+                bookBorrowLog.BookCopyId = bookBorrowLogDomainModel.BookCopyId;
+            }
+            if (bookBorrowLogDomainModel.BorrowedAt != null) {
+                bookBorrowLog.BorrowedAt = bookBorrowLogDomainModel.BorrowedAt;
+            }
+    
+            await bookBorrowLog.save();
+
+            const dto = BookBorrowLogMapper.toDetailsDto(bookBorrowLog);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
+
     async delete(bookBorrowLogId: string): Promise<boolean>  {
         try {
             const deleted = await BookBorrowLog.destroy({ where: { id:bookBorrowLogId } });

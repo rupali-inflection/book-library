@@ -11,4 +11,7 @@ export interface IAuthorRepo {
 
     search(filters: AuthorSearchFilters): Promise<AuthorSearchResults>;
 
+    update(authorId: string, authorDomainModel: AuthorDomainModel):
+    Promise<AuthorDetailsDto>;
+
 }

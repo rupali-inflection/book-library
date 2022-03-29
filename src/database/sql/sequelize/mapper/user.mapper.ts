@@ -14,9 +14,9 @@ export class UserMapper {
             LastName: entity.LastName,
             Email: entity.Email,
             RoleId:entity.RoleId,
-            CreatedAt: entity.createdAt,
+            CreatedAt: entity.CreatedAt,
             UpdatedAt: entity.UpdatedAt,
-            DeletedAt: entity.deletedAt,
+            DeletedAt: entity.DeletedAt,
         };
         return dto;
     };

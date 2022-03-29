@@ -8,4 +8,7 @@ export interface IBookBorrowLogRepo {
 
     delete(bookBorrowLogId: string): Promise<boolean>;
 
+    update(bookBorrowLogId: string, bookBorrowLogDomainModel: BookBorrowLogDomainModel):
+    Promise<BookBorrowLogDetailsDto>;
+
 }
