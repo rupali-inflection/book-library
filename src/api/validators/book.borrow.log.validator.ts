@@ -26,6 +26,7 @@ export class BookBorrowLogValidator {
             await body('UserId').isString().notEmpty().trim().run(request);
 
             await body('BookCopyId').isString().notEmpty().trim().run(request);
+            await body('BorrowedAt').notEmpty().trim().run(request);
 
             const result = validationResult(request);
             if (!result.isEmpty()) {
@@ -33,8 +34,10 @@ export class BookBorrowLogValidator {
             }
 
             const createBookBorrowLogDomainModel: BookBorrowLogDomainModel = {
+
                 UserId: request.body.UserId,
                 BookCopyId: request.body.BookCopyId,
+                BorrowedAt:request.body.BorrowedAt
             };
 
             return createBookBorrowLogDomainModel;

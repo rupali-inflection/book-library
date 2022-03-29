@@ -25,6 +25,7 @@ export class BookBorrowLogRepo implements IBookBorrowLogRepo {
         const entity = {
             UserId:bookBorrowLogDetails.UserId,
             BookCopyId:bookBorrowLogDetails.BookCopyId,
+            BorrowedAt:bookBorrowLogDetails.BorrowedAt
         };
     
         const bookBorrowLog: BookBorrowLog = await BookBorrowLog.create(entity);
