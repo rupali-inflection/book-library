@@ -1,0 +1,713 @@
+{
+	"info": {
+		"_postman_id": "a072128d-d93d-4fb1-b987-49dcc067a140",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"item": [
+				{
+					"name": "Health check request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth  Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"AccessToken\");\r",
+									"    });\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"Access_Token\",jsonData.Data.entity.AccessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\":\"Kiran.kharade@yopmail.com\",\r\n    \"Password\":\"Mauli@1707\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Prefix\": \"Mr.\",\r\n                \"FirstName\": \"Kiran\",\r\n                \"MiddleName\": \"\",\r\n                \"LastName\": \"Kharade\",\r\n                \"Email\": \"Kiran.kharade@yopmail.com\",\r\n                 \"Password\":\"Mauli11@1707\"\r\n                 \"RoleId\": \"e8725afc-8831-4ec8-a1c7-921e9693648f\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/686dfd54-c651-4ce4-ad2d-2dc79a7f694d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"686dfd54-c651-4ce4-ad2d-2dc79a7f694d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/5f2286c4-f29d-4814-9838-da8e2bf257a3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"5f2286c4-f29d-4814-9838-da8e2bf257a3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create  User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Prefix\": \"Miss\",\r\n    \"FirstName\": \"Dnyanada \",\r\n     \"MiddleName\": \"Ekanath\",\r\n      \"LastName\": \"Kharat\",\r\n      \"Email\": \"rupali701720@gmail.com\",\r\n      \"Password\": \"Mauli@1707\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete UserById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/eab667fd-8357-4d2d-9728-0a869f62b5b2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"eab667fd-8357-4d2d-9728-0a869f62b5b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"Email\": \"rupali701720@gmail.com\",\r\n      \"Password\": \"Mauli@1707\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Prefix\": \"Miss\",\r\n    \"FirstName\": \"Dnyanada \",\r\n     \"MiddleName\": \"Ekanath\",\r\n      \"LastName\": \"Kharat\",\r\n      \"Email\": \"rupali120@gmail.com\",\r\n      \"Password\": \"Mauli@1707\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/e2615557-7fdc-4c31-8da5-970f66a081d9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"e2615557-7fdc-4c31-8da5-970f66a081d9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Book Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"Name\":\"Turning Points\",\r\n     \"Summary\": \": A Journey Through Challenges\",\r\n    \"PublishedAt\":\"1993-11-12\",\r\n    \"AuthorId\":\"1a8066a7-2f37-466e-85fa-9befede3a18e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book GetById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"Name\":\"Wings of fire\",\r\n     \"Summary\": \"Motivation & Inspiration\",\r\n    \"PublishedAt\":\"1993-11-11\",\r\n    \"AuthorId\":\"a262a250-21fa-4719-9fec-860be07f15d4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books/d7886c80-785b-4f03-bf42-d743f0445f9b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"d7886c80-785b-4f03-bf42-d743f0445f9b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books/485c0db2-5f97-4c67-9dc4-a709c09e6452",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"485c0db2-5f97-4c67-9dc4-a709c09e6452"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"Name\":\"Turning Points\",\r\n     \"Summary\": \": A Journey Through Challenges\",\r\n    \"PublishedAt\":\"1993-10-11\",\r\n    \"AuthorId\":\"1a8066a7-2f37-466e-85fa-9befede3a18e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books/53220fc4-1f37-42f8-8ddf-551884e22949",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"53220fc4-1f37-42f8-8ddf-551884e22949"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookCopy",
+			"item": [
+				{
+					"name": "Create BookCopy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BookId\":\"485c0db2-5f97-4c67-9dc4-a709c09e6452\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books-copy",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-copy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookCopy GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books-copy/5975c7d5-ce1d-481b-80cf-a5999b6ad4ff",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-copy",
+								"5975c7d5-ce1d-481b-80cf-a5999b6ad4ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookCopy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/books-copy",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-copy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookCopy Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books-copy/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-copy",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Author GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/authors/34eafc45-ca23-4484-b911-a1e3f748ca70",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authors",
+								"34eafc45-ca23-4484-b911-a1e3f748ca70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n     \"FirstName\": \"Abdul\",\r\n      \"LastName\": \"Kalam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/authors/98821236-ee17-449c-8624-450654169519",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authors",
+								"98821236-ee17-449c-8624-450654169519"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Author Delete",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Author Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/authors/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authors",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Author Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n     \"FirstName\": \"Abdul Kalam\",\r\n      \"LastName\": \"Kalam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/authors/98821236-ee17-449c-8624-450654169519",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authors",
+								"98821236-ee17-449c-8624-450654169519"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookBorrowLog",
+			"item": [
+				{
+					"name": "Create BookBorrowLog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"e7cf9ec9-9d10-4f15-8102-42be8eec24a5\",\r\n    \"BookCopyId\":\"ed615e88-f57c-4c8c-a291-698f3e63c926\",\r\n    \"BorrowedAt\":\"2020-10-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books-borrow-log",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-borrow-log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookBorrowLog GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books-borrow-log/9655ee0b-78df-41d4-91d7-ead8b9424e86",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-borrow-log",
+								"9655ee0b-78df-41d4-91d7-ead8b9424e86"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookBorrowLog  Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"e7cf9ec9-9d10-4f15-8102-42be8eec24a5\",\r\n    \"BookCopyId\":\"ed615e88-f57c-4c8c-a291-698f3e63c926\",\r\n    \"BorrowedAt\":\"2020-10-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/books-borrow-log/9655ee0b-78df-41d4-91d7-ead8b9424e86",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books-borrow-log",
+								"9655ee0b-78df-41d4-91d7-ead8b9424e86"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{Access_Token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Access_Token",
+			"value": ""
+		}
+	]
+}
