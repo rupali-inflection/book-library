@@ -25,10 +25,31 @@ export class UserController extends BaseController {
     }
 
     //#endregion
+    create = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            this.setContext('User.Create', request, response,false);
+            const domainData: UserDomainModel = await UserValidator.create(request, response);
+
+            const userdetails: UserDetailsDto = await this._service.create(domainData);
+            ResponseHandler.success(
+                request,
+                response,
+                'User created!',
+                200,
+                {
+                    entity: userdetails,
+                    
+                },
+                false
+            );
+        } catch (err) {
+            ResponseHandler.handleError(request, response, err);
+        }
+    };
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('User.GetByuserId', request, response);
+            await this.setContext('User.GetById', request, response);
 
             const userId: string = await UserValidator.get(request, response);
 
@@ -72,31 +93,8 @@ export class UserController extends BaseController {
         }
     };
                
-    create = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            this.setContext('User.Create', request, response,false);
-            const domainData: UserDomainModel = await UserValidator.create(request, response);
-
-            const userdetails: UserDetailsDto = await this._service.create(domainData);
-            ResponseHandler.success(
-                request,
-                response,
-                'User created!',
-                200,
-                {
-                    entity: userdetails,
-                    
-                },
-                false
-            );
-        } catch (err) {
-            ResponseHandler.handleError(request, response, err);
-        }
-    };
-    
     loginWithPassword = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            // request.context = 'User.create';
 
             const domainData: UserLoginDetails = await UserValidator.loginWithPassword(request, response);
 

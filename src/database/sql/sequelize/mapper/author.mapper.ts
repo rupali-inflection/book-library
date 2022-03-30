@@ -12,9 +12,10 @@ export class AuthorMapper {
         const dto: AuthorDetailsDto = {
             id:entity.id,
             FirstName: entity.FirstName,
-            LastName: entity. LastName,
-            CreatedAt: entity.createdAt,
-            UpdatedAt: entity.updatedAt
+            LastName: entity.LastName,
+            CreatedAt: entity.CreatedAt,
+            UpdatedAt: entity.UpdatedAt,
+            DeletedAt: entity.DeletedAt,
         };
 
         return dto;

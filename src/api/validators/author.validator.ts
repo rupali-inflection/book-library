@@ -23,7 +23,7 @@ export class AuthorValidator {
     
     static create = async (request: express.Request, response: express.Response): Promise<AuthorDomainModel> => {
         try {
-            await body('id').trim().run(request);
+            
             await body('FirstName').isString().notEmpty().trim().run(request);
             await body('LastName').isString().notEmpty().trim().run(request);
             const result = validationResult(request);
@@ -34,7 +34,7 @@ export class AuthorValidator {
             const createAuthorDomainModel: AuthorDomainModel = {
               
                 FirstName: request.body.FirstName,
-                LastName:request.body. LastName
+                LastName:request.body.LastName
             };
 
             return createAuthorDomainModel;

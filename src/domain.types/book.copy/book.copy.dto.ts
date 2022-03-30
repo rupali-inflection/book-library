@@ -6,5 +6,7 @@ export interface BookCopyDetailsDto {
     CreatedAt: Date;
 
     UpdatedAt: Date;
+    
+    DeletedAt: Date;
 
 }

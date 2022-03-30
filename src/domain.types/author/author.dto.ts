@@ -8,4 +8,5 @@ export interface AuthorDetailsDto  {
     CreatedAt: Date;
 
     UpdatedAt: Date;
+    DeletedAt: Date;
     }

@@ -13,9 +13,9 @@ export class BookMapper {
             Name: entity. Name,
             Summary: entity.Summary,
             PublishedAt: entity.PublishedAt,
-            CreatedAt: entity.createdAt,
-            UpdatedAt: entity.updatedAt,
-            DeletedAt: entity.deletedAt,
+            CreatedAt: entity.CreatedAt,
+            UpdatedAt: entity.UpdatedAt,
+            DeletedAt: entity.DeletedAt,
             AuthorId:entity.AuthorId
         };
 
