@@ -11,3 +11,10 @@ export interface UserLoginDetails {
     Email: string;
     Password: string;
 }
+
+
+export interface UserMembershipDetails {
+    UserId: string;
+    ValidFrom: Date;
+    ValidTill: Date
+}

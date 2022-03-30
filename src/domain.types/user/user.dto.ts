@@ -12,3 +12,15 @@ export interface UserDetailsDto {
 
     DeletedAt: Date;
 }
+
+export interface UserMembershipDetailsDto {
+    id: string;
+    UserId: string;
+    ValidFrom: Date;
+    ValidTill: Date
+    CreatedAt: Date;
+
+    UpdatedAt: Date;
+
+    DeletedAt: Date;
+}
