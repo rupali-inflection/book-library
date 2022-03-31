@@ -1,5 +1,5 @@
-import { UserValidator } from '../../api/validators/user.validator';
 import express from 'express';
+import { UserValidator } from '../../api/validators/user.validator';
 import { Authorizer } from '../../auth/authorizer';
 import { ApiError } from '../../common/api.error';
 import { ResponseHandler } from '../../common/response.handler';
@@ -9,12 +9,10 @@ import { UserService } from '../../services/user.service';
 import { Loader } from '../../startup/loader';
 import { BaseController } from './base.controller';
 
-
-
 export class UserController extends BaseController {
     //#region member variables and constructors
 
-    _service: UserService = null;
+    _service: UserService = null; 
 
     _authorizer: Authorizer = null;
 
@@ -27,7 +25,7 @@ export class UserController extends BaseController {
     //#endregion
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            this.setContext('User.Create', request, response,false);
+            await this.setContext('User.Create', request, response,false);
             const domainData: UserDomainModel = await UserValidator.create(request, response);
 
             const userdetails: UserDetailsDto = await this._service.create(domainData);
