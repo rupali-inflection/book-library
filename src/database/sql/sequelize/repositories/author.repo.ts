@@ -25,7 +25,7 @@ export class AuthorRepo implements IAuthorRepo {
         const entity = {
            
             FirstName: authorDetails.FirstName,
-            LasttName: authorDetails.LastName,
+            LastName: authorDetails.LastName,
         };
     
         const author: Author = await Author.create(entity);
