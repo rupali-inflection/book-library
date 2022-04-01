@@ -69,7 +69,7 @@ export class BookCopyController extends BaseController {
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            await this.setContext('BookCopy.Search', request, response);
+            await this.setContext('BookCopy.Search', request, response,false);
 
             const filters = await BookCopyValidator.search(request,response);
 

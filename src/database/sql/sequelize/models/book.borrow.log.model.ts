@@ -73,7 +73,6 @@ export default class BookBorrowLog extends Model {
     @CreatedAt
     CreatedAt: Date;
  
-
     @UpdatedAt
     UpdatedAt: Date;
 

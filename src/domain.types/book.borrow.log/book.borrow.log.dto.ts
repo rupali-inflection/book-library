@@ -1,11 +1,10 @@
 export interface BookBorrowLogDetailsDto {
-    id: string;
+    id?: string;
+    UserId?: string;
 
-    BorrowedAt: Date;
+    BookCopyId?:string;
 
-    ReturnedAt: Date;
+     BorrowedAt?: Date;
 
-    UserId: string;
-
-    BookCopyId:string;
+    ReturnedAt?: Date;
 }

@@ -62,7 +62,11 @@ export class BookBorrowLogValidator {
                 .trim()
                 .escape()
                 .run(request);
-
+            await query('ReturnedAt').optional()
+                .trim()
+                .escape()
+                .run(request);
+            
             const result = validationResult(request);
             if (!result.isEmpty()) {
                 Helper.handleValidationError(result);
@@ -72,8 +76,8 @@ export class BookBorrowLogValidator {
             const createBookBorrowLogDomainModel: BookBorrowLogDomainModel = {
                 UserId: request.body.UserId,
                 BookCopyId: request.body.BookCopyId,
-                BorrowedAt: request.body.BorrowedAt
-               
+                BorrowedAt: request.body.BorrowedAt,
+                ReturnedAt: request.body.ReturnedAt
             };
 
             return createBookBorrowLogDomainModel;

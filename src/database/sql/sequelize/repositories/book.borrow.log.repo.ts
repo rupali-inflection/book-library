@@ -47,6 +47,9 @@ export class BookBorrowLogRepo implements IBookBorrowLogRepo {
             if (bookBorrowLogDomainModel.BorrowedAt != null) {
                 bookBorrowLog.BorrowedAt = bookBorrowLogDomainModel.BorrowedAt;
             }
+            if (bookBorrowLogDomainModel.ReturnedAt != null) {
+                bookBorrowLog.ReturnedAt  = bookBorrowLogDomainModel.ReturnedAt ;
+            }
     
             await bookBorrowLog.save();
 
