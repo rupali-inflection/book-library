@@ -1,5 +1,5 @@
 import { AuthorDetailsDto } from "domain.types/author/author.dto";
-import Author from "../models/autor.model";
+import Author from "../models/author.model";
 
 
 

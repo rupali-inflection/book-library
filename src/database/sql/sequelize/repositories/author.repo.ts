@@ -5,7 +5,7 @@ import { AuthorDomainModel } from "../../../../domain.types/author/auther.domain
 import { AuthorDetailsDto } from "../../../../domain.types/author/author.dto";
 import { AuthorSearchFilters, AuthorSearchResults } from "../../../../domain.types/author/author.search";
 import { AuthorMapper } from "../mapper/author.mapper";
-import Author from "../models/autor.model";
+import Author from "../models/author.model";
 
 export class AuthorRepo implements IAuthorRepo {
     

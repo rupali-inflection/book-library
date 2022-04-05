@@ -14,7 +14,7 @@ import {
     UpdatedAt,
 } from 'sequelize-typescript';
 import { v4 } from 'uuid';
-import Author from './autor.model';
+import Author from './author.model';
 
 
 @Table({
