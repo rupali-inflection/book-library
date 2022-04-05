@@ -9,6 +9,7 @@ import {
     DataType,
     DeletedAt,
     ForeignKey,
+    HasMany,
     IsEmail,
     IsUUID,
     Length,
@@ -19,6 +20,7 @@ import {
 } from 'sequelize-typescript';
 import { v4 } from 'uuid';
 import Role from './role.model';
+import BookBorrowLog from './book.borrow.log.model';
 
 @Table({
     timestamps: true,
@@ -87,8 +89,10 @@ export default class User extends Model {
     @BeforeCreate
     @BeforeUpdate
     static encryptPassword(client) {
-        client.Password = Helper.hash(client.Password);
-    }
+        if (client.Password != null || client.Password  != ''){
+                client.Password = Helper.hash(client.Password);
+       }
+   }
 
     //@IsUUID(4)
     @ForeignKey(() => Role)
@@ -100,6 +104,9 @@ export default class User extends Model {
 
     @BelongsTo(() => Role)
     Role: Role;
+
+    @HasMany(() => BookBorrowLog)
+    BooksBorrowed: BookBorrowLog[];
 
     @Column
     @CreatedAt

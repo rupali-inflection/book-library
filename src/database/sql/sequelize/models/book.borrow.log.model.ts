@@ -55,7 +55,7 @@ export default class BookBorrowLog extends Model {
     UserId: string;
 
     @BelongsTo(() => User)
-    BorrowerUser: User;
+      User: User;
 
     @Column({
         type: DataType.DATE,
