@@ -1,11 +1,11 @@
 import { Logger } from '../common/logger';
-import { IRolePrivilegeRepo } from 'database/repository.interfaces/role.privilege.repo.interface';
-import { IUserRepo } from 'database/repository.interfaces/user.repo.interface';
-import { IRoleRepo } from 'database/repository.interfaces/user.role.repo.interface';
-import { RoleDto } from 'domain.types/role/role.dto';
+import { IRolePrivilegeRepo } from '../database/repository.interfaces/role.privilege.repo.interface';
+import { IUserRepo } from '../database/repository.interfaces/user.repo.interface';
+import { IRoleRepo } from '../database/repository.interfaces/user.role.repo.interface';
+import { RoleDto } from '../domain.types/role/role.dto';
 import { Roles } from '../domain.types/role/role.types';
-import { UserDomainModel } from 'domain.types/user/user.domain.model';
-import { UserDetailsDto } from 'domain.types/user/user.dto';
+import { UserDomainModel } from '../domain.types/user/user.domain.model';
+import { UserDetailsDto } from '../domain.types/user/user.dto';
 import { inject, injectable } from 'tsyringe';
 import * as RolePrivilegesList from '../seed.data/role.privileges.json';
 

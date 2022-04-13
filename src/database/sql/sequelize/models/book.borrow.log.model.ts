@@ -53,7 +53,7 @@ export default class BookBorrowLog extends Model {
         allowNull: false,
     })
     UserId: string;
-
+ 
     @BelongsTo(() => User)
       User: User;
 

@@ -1,5 +1,5 @@
 
-import { BookDetailsDto } from 'domain.types/book/book.dto';
+import { BookDetailsDto } from '../../../../domain.types/book/book.dto';
 import Book from '../models/book.model';
 
 

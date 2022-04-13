@@ -1,9 +1,9 @@
-import { Logger } from "../../../common/logger";
-import { IDatabaseConnector } from "../database.connector.interface";
 import { Dialect } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
-import { DbConfig } from "./datatbase.config";
+import { Logger } from "../../../common/logger";
 import { ConfigurationManager } from "../../../config/configuration.manager";
+import { IDatabaseConnector } from "../database.connector.interface";
+import { DbConfig } from "./datatbase.config";
 import { PostgresqlClient } from "./dilect.clients/postgresql.client";
 
 export class DatabaseConnector_Sequelize implements IDatabaseConnector {
@@ -39,7 +39,7 @@ export class DatabaseConnector_Sequelize implements IDatabaseConnector {
                     acquire: config.pool.acquire,
                     idle: config.pool.idle,
                 },
-                logging: false, //TODO: Please provide a function here to handle logging...
+                logging: false, 
             };
             this._sequelize = new Sequelize(config.database, config.username, config.password, options);
             Logger.instance().log(`Connecting to database '${config.database}' ...`);
